@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CorporativeSN.Api
 {
-    public class DbContext
+    public class CorpSNContextInit
     {
     }
 }

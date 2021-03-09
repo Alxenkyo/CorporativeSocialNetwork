@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LGP7gKubFQpsq9KC287+XV23GV7jKsuqWjB7qvNuB5OB7sBgSDcFvMBZ+X1W5iLe1XOOsv/CCA61x7nJN+BjpQ==",
+  "dgSpecHash": "Z3eRrZQFh1/1qUuOb5hdYIcBhJPnkl3vecrGOV+Of+mNlL2pZ07W8dKZ8tOfD4Cey51f8cMblFEjMyGRq3XASA==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\CorporativeSN\\CorporativeSN.Logic\\CorporativeSN.Logic.csproj",
+  "projectFilePath": "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Logic\\CorporativeSN.Logic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

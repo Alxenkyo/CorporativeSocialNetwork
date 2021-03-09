@@ -10,5 +10,6 @@ namespace CorporativeSN.Models
         public int Id { get; set; }
         //public bool IsRead { get; set; }
         public string Status { get; set; }
+        public List<Message> Messages { get; set; }
     }
 }

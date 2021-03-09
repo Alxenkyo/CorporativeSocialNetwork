@@ -7,7 +7,8 @@ namespace CorporativeSN.Models
 {
     public class Chat
     {
-        public int id;
-        public int name;
+        public int Id { get; set; }
+        public int Name { get; set; }
+        public List<ChatMember> Members { get; set; }
     }
 }
