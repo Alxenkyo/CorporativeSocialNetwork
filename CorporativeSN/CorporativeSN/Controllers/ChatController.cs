@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CorporativeSN.Logic.Interfaces;
+using CorporativeSN.Data.Models;
+using CorporativeSN.Logic.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,36 +16,58 @@ namespace CorporativeSN.Api.Controllers
     [ApiController]
     public class ChatController : ControllerBase
     {
-        // GET: api/<ChatController>
+        private readonly IChatManager _chatManager;
+
+        public ChatController(IChatManager chatManager)
+        {
+            _chatManager = chatManager;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetChatsAsync(
+            [FromQuery] string search,
+            [FromQuery] int? fromIndex = default,
+            [FromQuery] int? toIndex = default,
+            CancellationToken cancellationToken = default)
         {
-            return new string[] { "value1", "value2" };
+            var result = await _chatManager.GetChatsAsync(search, fromIndex, toIndex, cancellationToken);
+            return Ok(result);
         }
 
-        // GET api/<ChatController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{chatId}")]
+        public async Task<IActionResult> GetChatAsync(
+            int chatId,
+            CancellationToken cancellationToken = default)
         {
-            return "value";
+            var result = await _chatManager.GetChatAsync(chatId, cancellationToken);
+            return Ok(result);
         }
 
-        // POST api/<ChatController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost()]
+        public async Task<IActionResult> CreateChatAsync(
+           ChatDTO chat,
+           CancellationToken cancellationToken = default)
         {
+            var result = await _chatManager.CreateChatAsync(chat, cancellationToken);
+            return Ok(result);
         }
 
-        // PUT api/<ChatController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpDelete("{chatId}")]
+        public async Task<IActionResult> DeleteChatAsync(
+            int chatId,
+            CancellationToken cancellationToken = default)
         {
+            await _chatManager.DeleteChatAsync(chatId, cancellationToken);
+            return Ok();
         }
 
-        // DELETE api/<ChatController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPut()]
+        public async Task<IActionResult> UpdateChatAsync(
+            ChatDTO chat,
+            CancellationToken cancellationToken = default)
         {
+            var result = await _chatManager.UpdateChatAsync(chat, cancellationToken);
+            return Ok(result);
         }
     }
 }

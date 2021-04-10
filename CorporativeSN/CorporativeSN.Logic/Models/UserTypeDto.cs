@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CorporativeSN.Models
+namespace CorporativeSN.Logic.Models
 {
-    public class UserTypeDto
+    public class UserTypeDTO
     {
         public int Id { get; set; }
         public string Type { get; set; }

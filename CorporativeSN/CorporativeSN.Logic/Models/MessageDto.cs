@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CorporativeSN.Models
+namespace CorporativeSN.Logic.Models
 {
-    public class MessageDto
+    public class MessageDTO
     {
         public int Id { get; set; }
         public int ChatId { get; set; }

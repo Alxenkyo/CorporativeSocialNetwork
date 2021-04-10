@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CorporativeSN.Data;
+using CorporativeSN.Data.Models;
 using System.Diagnostics.CodeAnalysis;
-using CorporativeSN.Models;
+using CorporativeSN.Data;
 
 namespace CorporativeSN.Api
 {
@@ -21,10 +21,13 @@ namespace CorporativeSN.Api
         public DbSet<MessageStatus> MessageStatuses { get ; set ; }
         public DbSet<User> Users { get; set ; }
         public DbSet<UserType> UserTypes { get ; set ; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Event> Events { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasKey(x => x.Id);
             modelBuilder.Entity<User>().Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<User>().HasMany(x => x.CreatedEvents).WithOne().HasForeignKey(x => x.CreatorId);
 
             modelBuilder.Entity<UserType>().HasKey(x => x.Id);
             modelBuilder.Entity<UserType>().Property(x => x.Id).ValueGeneratedOnAdd();
@@ -42,6 +45,15 @@ namespace CorporativeSN.Api
 
             modelBuilder.Entity<ChatMember>().HasKey(x => x.Id);
             modelBuilder.Entity<ChatMember>().Property(x => x.Id).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Department>().HasKey(x => x.Id);
+            modelBuilder.Entity<Department>().Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Department>().HasMany(x => x.Members).WithOne().HasForeignKey(x => x.DepartmentId);
+
+            modelBuilder.Entity<Event>().HasKey(x => x.Id);
+            modelBuilder.Entity<Event>().Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Event>().HasMany(x => x.Users).WithOne();
+
         }
     }
 }

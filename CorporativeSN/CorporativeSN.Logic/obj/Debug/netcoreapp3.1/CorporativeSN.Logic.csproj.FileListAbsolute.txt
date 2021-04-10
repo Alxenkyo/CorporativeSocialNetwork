@@ -1,0 +1,12 @@
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\bin\Debug\netcoreapp3.1\CorporativeSN.Logic.deps.json
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\bin\Debug\netcoreapp3.1\CorporativeSN.Logic.dll
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\bin\Debug\netcoreapp3.1\CorporativeSN.Logic.pdb
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\bin\Debug\netcoreapp3.1\CorporativeSN.Data.dll
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\bin\Debug\netcoreapp3.1\CorporativeSN.Data.pdb
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\obj\Debug\netcoreapp3.1\CorporativeSN.Logic.csprojAssemblyReference.cache
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\obj\Debug\netcoreapp3.1\CorporativeSN.Logic.AssemblyInfoInputs.cache
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\obj\Debug\netcoreapp3.1\CorporativeSN.Logic.AssemblyInfo.cs
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\obj\Debug\netcoreapp3.1\CorporativeSN.Logic.csproj.CoreCompileInputs.cache
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\obj\Debug\netcoreapp3.1\CorporativeSN.Logic.csproj.CopyComplete
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\obj\Debug\netcoreapp3.1\CorporativeSN.Logic.dll
+D:\Projects\repos\CorporativeSN\CorporativeSN.Logic\obj\Debug\netcoreapp3.1\CorporativeSN.Logic.pdb

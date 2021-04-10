@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CorporativeSN.Models
+namespace CorporativeSN.Data.Models
 {
     public class User
     {
@@ -12,6 +12,9 @@ namespace CorporativeSN.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public int TypeId { get; set; }
-        public UserType userType { get; set; }
+        public UserType UserType { get; set; }
+        public int DepartmentId { get; set; }
+        //public Department Department { get; set; }
+        public List<Event> CreatedEvents { get; set; }
     }
 }
