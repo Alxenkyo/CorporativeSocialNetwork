@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CorporativeSN.Logic.Interfaces;
+using CorporativeSN.Data.Models;
+using CorporativeSN.Logic.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,36 +16,58 @@ namespace CorporativeSN.Api.Controllers
     [ApiController]
     public class MessageController : ControllerBase
     {
-        // GET: api/<MessageController>
+        private readonly IMessageManager _messageManager;
+
+        public MessageController(IMessageManager messageManager)
+        {
+            _messageManager = messageManager;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetMessagesAsync(
+            [FromQuery] string search,
+            [FromQuery] int? fromIndex = default,
+            [FromQuery] int? toIndex = default,
+            CancellationToken cancellationToken = default)
         {
-            return new string[] { "value1", "value2" };
+            var result = await _messageManager.GetMessagesAsync(search, fromIndex, toIndex, cancellationToken);
+            return Ok(result);
         }
 
-        // GET api/<MessageController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{messageId}")]
+        public async Task<IActionResult> GetMessageAsync(
+            int messageId,
+            CancellationToken cancellationToken = default)
         {
-            return "value";
+            var result = await _messageManager.GetMessageAsync(messageId, cancellationToken);
+            return Ok(result);
         }
 
-        // POST api/<MessageController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost()]
+        public async Task<IActionResult> CreateMessageAsync(
+           MessageDTO message,
+           CancellationToken cancellationToken = default)
         {
+            var result = await _messageManager.CreateMessageAsync(message, cancellationToken);
+            return Ok(result);
         }
 
-        // PUT api/<MessageController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpDelete("{messageId}")]
+        public async Task<IActionResult> DeleteUserAsync(
+            int messageId,
+            CancellationToken cancellationToken = default)
         {
+            await _messageManager.DeleteMessageAsync(messageId, cancellationToken);
+            return Ok();
         }
 
-        // DELETE api/<MessageController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPut()]
+        public async Task<IActionResult> UpdateMessageAsync(
+            MessageDTO message,
+            CancellationToken cancellationToken = default)
         {
+            var result = await _messageManager.UpdateMessageAsync(message, cancellationToken);
+            return Ok(result);
         }
     }
 }

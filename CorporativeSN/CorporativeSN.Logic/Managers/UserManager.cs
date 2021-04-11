@@ -71,7 +71,7 @@ namespace CorporativeSN.Logic.Managers
             return new PagedResult<UserDTO> { Items = (IEnumerable<UserDTO>)items, Total = total };
         }
 
-        public async Task<UserDTO> UpdateГыукAsync(UserDTO user, CancellationToken cancellationToken = default)
+        public async Task<UserDTO> UpdateUserAsync(UserDTO user, CancellationToken cancellationToken = default)
         {
             var update = await _corpSNContext.Users.FirstOrDefaultAsync(x => x.Id == user.Id, cancellationToken);
             if (update != null)

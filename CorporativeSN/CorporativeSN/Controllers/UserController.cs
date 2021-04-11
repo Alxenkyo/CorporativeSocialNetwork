@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CorporativeSN.Logic.Interfaces;
+using CorporativeSN.Logic.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,36 +15,58 @@ namespace CorporativeSN.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        // GET: api/<UserController>
+        private readonly IUserManager _userManager;
+
+        public UserController(IUserManager userManager)
+        {
+            _userManager = userManager;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetUsersAsync(
+            [FromQuery] string search,
+            [FromQuery] int? fromIndex = default,
+            [FromQuery] int? toIndex = default,
+            CancellationToken cancellationToken = default)
         {
-            return new string[] { "value1", "value2" };
+            var result = await _userManager.GetUsersAsync(search, fromIndex, toIndex, cancellationToken);
+            return Ok(result);
         }
 
-        // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetUserAsync(
+            int userId,
+            CancellationToken cancellationToken = default)
         {
-            return "value";
+            var result = await _userManager.GetUserAsync(userId, cancellationToken);
+            return Ok(result);
         }
 
-        // POST api/<UserController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost()]
+        public async Task<IActionResult> CreateUserAsync(
+           UserDTO user,
+           CancellationToken cancellationToken = default)
         {
+            var result = await _userManager.CreateUserAsync(user, cancellationToken);
+            return Ok(result);
         }
 
-        // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUserAsync(
+            int userId,
+            CancellationToken cancellationToken = default)
         {
+            await _userManager.DeleteUserAsync(userId, cancellationToken);
+            return Ok();
         }
 
-        // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPut()]
+        public async Task<IActionResult> UpdateUserAsync(
+            UserDTO user,
+            CancellationToken cancellationToken = default)
         {
+            var result = await _userManager.UpdateUserAsync(user, cancellationToken);
+            return Ok(result);
         }
     }
 }
