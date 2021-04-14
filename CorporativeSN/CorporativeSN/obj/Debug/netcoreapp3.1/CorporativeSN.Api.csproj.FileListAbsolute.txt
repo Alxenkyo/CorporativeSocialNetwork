@@ -70,3 +70,4 @@ D:\Projects\repos\CorporativeSN\CorporativeSN\bin\Debug\netcoreapp3.1\AutoMapper
 D:\Projects\repos\CorporativeSN\CorporativeSN\obj\Debug\netcoreapp3.1\CorporativeSN.Api.MvcApplicationPartsAssemblyInfo.cs
 D:\Projects\repos\CorporativeSN\CorporativeSN\bin\Debug\netcoreapp3.1\CorporativeSN.Logic.dll
 D:\Projects\repos\CorporativeSN\CorporativeSN\bin\Debug\netcoreapp3.1\CorporativeSN.Logic.pdb
+D:\Projects\repos\CorporativeSN\CorporativeSN\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

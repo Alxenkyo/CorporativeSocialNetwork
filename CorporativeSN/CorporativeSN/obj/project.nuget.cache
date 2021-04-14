@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "hrE3ITeUG5UM8XyGpEm9F0TQ24zYMQM5CkFbbLhC7He8bCfTgR9N3BDX3Uq9jgnwvj/4ZUIpwIPxZ9BW8snTng==",
+  "dgSpecHash": "JruJi3/uoGVRWUP+OYe0HPcR9nrzjqqdXkeROVUyVu/iXQrjxxd5P83o1Rjezx15pyhgnigqIzGzO2aartuOcA==",
   "success": true,
   "projectFilePath": "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN\\CorporativeSN.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.14\\microsoft.aspnetcore.authentication.jwtbearer.3.1.14.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",

@@ -31,7 +31,7 @@ namespace CorporativeSN.Api
 
             modelBuilder.Entity<UserType>().HasKey(x => x.Id);
             modelBuilder.Entity<UserType>().Property(x => x.Id).ValueGeneratedOnAdd();
-            modelBuilder.Entity<UserType>().HasMany(x => x.Users).WithOne().HasForeignKey(x => x.TypeId);
+            modelBuilder.Entity<UserType>().HasMany(x => x.Users).WithOne().HasForeignKey(x => x.UserTypeId);
 
             modelBuilder.Entity<Message>().HasKey(x => x.Id);
             modelBuilder.Entity<Message>().Property(x => x.Id).ValueGeneratedOnAdd();

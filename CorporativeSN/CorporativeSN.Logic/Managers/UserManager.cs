@@ -81,5 +81,17 @@ namespace CorporativeSN.Logic.Managers
             await _corpSNContext.SaveChangesAsync(cancellationToken);
             return user;
         }
+        
+        public async Task<UserDTO> AuthUserAsync(string login, string password, CancellationToken cancellationToken = default)
+        {
+            var user = await _corpSNContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Login == login && x.Password == password, cancellationToken);
+            return _mapper.Map<UserDTO>(user);
+        }
+
+        public async Task<UserTypeDTO> GetUserRole(UserDTO user, CancellationToken cancellationToken = default)
+        {
+            var role = await _corpSNContext.UserTypes.AsNoTracking().FirstOrDefaultAsync(x => x.Id == user.UserTypeId, cancellationToken);
+            return _mapper.Map<UserTypeDTO>(role);
+        }
     }
 }
