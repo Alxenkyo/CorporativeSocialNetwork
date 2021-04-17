@@ -15,6 +15,6 @@ namespace CorporativeSN.Data.Models
         //public UserType UserType { get; set; }
         public int DepartmentId { get; set; }
         //public Department Department { get; set; }
-        public List<Event> CreatedEvents { get; set; }
+        //public List<Event> CreatedEvents { get; set; }
     }
 }

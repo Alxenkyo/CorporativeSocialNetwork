@@ -27,7 +27,7 @@ namespace CorporativeSN.Api
         {
             modelBuilder.Entity<User>().HasKey(x => x.Id);
             modelBuilder.Entity<User>().Property(x => x.Id).ValueGeneratedOnAdd();
-            modelBuilder.Entity<User>().HasMany(x => x.CreatedEvents).WithOne().HasForeignKey(x => x.CreatorId);
+            //modelBuilder.Entity<User>().HasMany(x => x.CreatedEvents).WithOne().HasForeignKey(x => x.CreatorId);
 
             modelBuilder.Entity<UserType>().HasKey(x => x.Id);
             modelBuilder.Entity<UserType>().Property(x => x.Id).ValueGeneratedOnAdd();
@@ -50,9 +50,9 @@ namespace CorporativeSN.Api
             modelBuilder.Entity<Department>().Property(x => x.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Department>().HasMany(x => x.Members).WithOne().HasForeignKey(x => x.DepartmentId);
 
-            modelBuilder.Entity<Event>().HasKey(x => x.Id);
-            modelBuilder.Entity<Event>().Property(x => x.Id).ValueGeneratedOnAdd();
-            modelBuilder.Entity<Event>().HasMany(x => x.Users).WithOne();
+            //modelBuilder.Entity<Event>().HasKey(x => x.Id);
+            //modelBuilder.Entity<Event>().Property(x => x.Id).ValueGeneratedOnAdd();
+            //modelBuilder.Entity<Event>().HasMany(x => x.Users).WithOne();
 
         }
     }

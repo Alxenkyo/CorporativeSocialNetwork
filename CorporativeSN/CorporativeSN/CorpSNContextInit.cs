@@ -22,6 +22,39 @@ namespace CorporativeSN.Api
                 });
                 context.SaveChanges();
             }
+            if (!context.Departments.Any())
+            {
+                context.Departments.Add(new Department
+                {
+                    Name = "Admin"
+                });
+                context.Departments.Add(new Department
+                {
+                    Name = "JavaDev"
+                });
+                context.SaveChanges();
+            }
+            if (!context.Users.Any())
+            {
+                context.Users.Add(new User
+                {
+                    Name = "Admin",
+                    Login = "admin",
+                    Password = "admin",
+                    DepartmentId = 1,
+                    UserTypeId = 1
+                });
+                context.Users.Add(new User
+                {
+                    Name = "kekw",
+                    Login = "kekw",
+                    Password = "kekw",
+                    DepartmentId = 2,
+                    UserTypeId = 2
+                });
+                context.SaveChanges();
+            }
+
         }
     }
 }

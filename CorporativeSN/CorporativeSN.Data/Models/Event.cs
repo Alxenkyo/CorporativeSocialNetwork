@@ -12,6 +12,6 @@ namespace CorporativeSN.Data.Models
         public DateTime Date { get; set; }
         public int CreatorId { get; set; }
         //public User Creator { get; set; }
-        public List<User> Users { get; set; }
+        //public List<User> Users { get; set; }
     }
 }

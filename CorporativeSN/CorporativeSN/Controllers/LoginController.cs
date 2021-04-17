@@ -30,7 +30,7 @@ namespace CorporativeSN.Api.Controllers
             var identity = await GetIdentity(username, password);
             if (identity == null)
             {
-                return BadRequest(new { errorText = "Invalid username or password." });
+                return BadRequest(new { errorText = "Invalid login or password." });
             }
 
             var now = DateTime.UtcNow;
