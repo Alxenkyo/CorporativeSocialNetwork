@@ -50,7 +50,7 @@ namespace CorporativeSN.Logic.Managers
 
         public async Task<PagedResult<UserDTO>> GetUsersAsync(string search, int? fromIndex = null, int? toIndex = null, CancellationToken cancellationToken = default)
         {
-            var query = _corpSNContext.Users.AsNoTracking();
+            var query = _corpSNContext.Users.Include(x=>x.CreatedEvents).AsNoTracking();
             if (!string.IsNullOrWhiteSpace(search))
             {
                 query = query.Where(x =>

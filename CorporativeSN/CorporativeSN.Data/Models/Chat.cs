@@ -10,5 +10,6 @@ namespace CorporativeSN.Data.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public List<ChatMember> Members { get; set; }
+        public List<Message> Messages { get; set; }
     }
 }

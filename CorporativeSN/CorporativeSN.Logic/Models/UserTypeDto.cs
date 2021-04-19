@@ -9,5 +9,6 @@ namespace CorporativeSN.Logic.Models
     {
         public int Id { get; set; }
         public string Type { get; set; }
+        public IEnumerable<UserDTO> Users { get; set; }
     }
 }

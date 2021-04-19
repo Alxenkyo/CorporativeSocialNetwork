@@ -13,5 +13,6 @@ namespace CorporativeSN.Logic.Models
         [Required]
         public string Name { get; set; }
         public IEnumerable<ChatMemberDTO> Members { get; set; }
+        public IEnumerable<MessageDTO> Messages { get; set; }
     }
 }

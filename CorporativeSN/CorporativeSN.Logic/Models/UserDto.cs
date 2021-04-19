@@ -13,9 +13,8 @@ namespace CorporativeSN.Logic.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public int UserTypeId { get; set; }
-        //public UserType UserType { get; set; }
         public int DepartmentId { get; set; }
-        //public Department Department { get; set; }
-        //public List<Event> CreatedEvents { get; set; }
+        public IEnumerable<EventDTO> CreatedEvents { get; set; }
+        public IEnumerable<ChatMemberDTO> ChatMembers { get; set; }
     }
 }

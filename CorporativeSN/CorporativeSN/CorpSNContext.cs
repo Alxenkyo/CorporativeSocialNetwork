@@ -27,7 +27,8 @@ namespace CorporativeSN.Api
         {
             modelBuilder.Entity<User>().HasKey(x => x.Id);
             modelBuilder.Entity<User>().Property(x => x.Id).ValueGeneratedOnAdd();
-            //modelBuilder.Entity<User>().HasMany(x => x.CreatedEvents).WithOne().HasForeignKey(x => x.CreatorId);
+            modelBuilder.Entity<User>().HasMany(x => x.CreatedEvents).WithOne().HasForeignKey(x => x.CreatorId);
+            modelBuilder.Entity<User>().HasMany(x => x.ChatMembers).WithOne().HasForeignKey(x => x.UserId);
 
             modelBuilder.Entity<UserType>().HasKey(x => x.Id);
             modelBuilder.Entity<UserType>().Property(x => x.Id).ValueGeneratedOnAdd();
@@ -38,10 +39,12 @@ namespace CorporativeSN.Api
 
             modelBuilder.Entity<MessageStatus>().HasKey(x => x.Id);
             modelBuilder.Entity<MessageStatus>().Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<MessageStatus>().HasMany(x => x.Messages).WithOne().HasForeignKey(x => x.StatusId);
 
             modelBuilder.Entity<Chat>().HasKey(x => x.Id);
             modelBuilder.Entity<Chat>().Property(x => x.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Chat>().HasMany(x => x.Members).WithOne().HasForeignKey(x => x.ChatId);
+            modelBuilder.Entity<Chat>().HasMany(x => x.Messages).WithOne().HasForeignKey(x => x.ChatId);
 
             modelBuilder.Entity<ChatMember>().HasKey(x => x.Id);
             modelBuilder.Entity<ChatMember>().Property(x => x.Id).ValueGeneratedOnAdd();
@@ -50,9 +53,8 @@ namespace CorporativeSN.Api
             modelBuilder.Entity<Department>().Property(x => x.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Department>().HasMany(x => x.Members).WithOne().HasForeignKey(x => x.DepartmentId);
 
-            //modelBuilder.Entity<Event>().HasKey(x => x.Id);
-            //modelBuilder.Entity<Event>().Property(x => x.Id).ValueGeneratedOnAdd();
-            //modelBuilder.Entity<Event>().HasMany(x => x.Users).WithOne();
+            modelBuilder.Entity<Event>().HasKey(x => x.Id);
+            modelBuilder.Entity<Event>().Property(x => x.Id).ValueGeneratedOnAdd();
 
         }
     }
