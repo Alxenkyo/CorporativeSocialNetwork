@@ -71,3 +71,4 @@ D:\Projects\repos\CorporativeSN\CorporativeSN\obj\Debug\netcoreapp3.1\Corporativ
 D:\Projects\repos\CorporativeSN\CorporativeSN\bin\Debug\netcoreapp3.1\CorporativeSN.Logic.dll
 D:\Projects\repos\CorporativeSN\CorporativeSN\bin\Debug\netcoreapp3.1\CorporativeSN.Logic.pdb
 D:\Projects\repos\CorporativeSN\CorporativeSN\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Projects\repos\CorporativeSN\CorporativeSN\bin\Debug\netcoreapp3.1\System.Net.WebSockets.WebSocketProtocol.dll

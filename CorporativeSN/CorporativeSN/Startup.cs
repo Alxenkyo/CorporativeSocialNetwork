@@ -97,7 +97,6 @@ namespace CorporativeSN
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }
