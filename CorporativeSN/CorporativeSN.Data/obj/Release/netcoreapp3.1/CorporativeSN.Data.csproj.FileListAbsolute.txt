@@ -1,0 +1,8 @@
+D:\Projects\repos\CorporativeSN\CorporativeSN.Data\bin\Release\netcoreapp3.1\CorporativeSN.Data.deps.json
+D:\Projects\repos\CorporativeSN\CorporativeSN.Data\bin\Release\netcoreapp3.1\CorporativeSN.Data.dll
+D:\Projects\repos\CorporativeSN\CorporativeSN.Data\bin\Release\netcoreapp3.1\CorporativeSN.Data.pdb
+D:\Projects\repos\CorporativeSN\CorporativeSN.Data\obj\Release\netcoreapp3.1\CorporativeSN.Data.AssemblyInfoInputs.cache
+D:\Projects\repos\CorporativeSN\CorporativeSN.Data\obj\Release\netcoreapp3.1\CorporativeSN.Data.AssemblyInfo.cs
+D:\Projects\repos\CorporativeSN\CorporativeSN.Data\obj\Release\netcoreapp3.1\CorporativeSN.Data.csproj.CoreCompileInputs.cache
+D:\Projects\repos\CorporativeSN\CorporativeSN.Data\obj\Release\netcoreapp3.1\CorporativeSN.Data.dll
+D:\Projects\repos\CorporativeSN\CorporativeSN.Data\obj\Release\netcoreapp3.1\CorporativeSN.Data.pdb
