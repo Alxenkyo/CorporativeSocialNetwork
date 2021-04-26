@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
+using CorporativeSN.Api.Hubs;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,10 +19,12 @@ namespace CorporativeSN.Api.Controllers
     public class MessageController : ControllerBase
     {
         private readonly IMessageManager _messageManager;
+        private readonly IHubContext<ChatHub> _hubContext;
 
-        public MessageController(IMessageManager messageManager)
+        public MessageController(IMessageManager messageManager, IHubContext<ChatHub> hubContext)
         {
             _messageManager = messageManager;
+            _hubContext = hubContext;
         }
 
         [HttpGet]
@@ -44,7 +48,7 @@ namespace CorporativeSN.Api.Controllers
         }
 
         [HttpPost()]
-        public async Task<IActionResult> CreateMessageAsync(
+        public async Task<IActionResult> SendMessageAsync(
            MessageDTO message,
            CancellationToken cancellationToken = default)
         {

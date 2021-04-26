@@ -18,6 +18,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CorporativeSN.Api.Hubs;
+
 namespace CorporativeSN
 {
     public class Startup
@@ -39,6 +41,7 @@ namespace CorporativeSN
             services.AddScoped<IMessageManager, MessageManager>();
             services.AddScoped<IUserManager, UserManager>();
             services.AddScoped<IEventManager, EventManager>();
+            services.AddSignalRCore();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CorpSN API", Version = "v1" });
@@ -94,6 +97,7 @@ namespace CorporativeSN
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }
