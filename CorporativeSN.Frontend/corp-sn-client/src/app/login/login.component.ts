@@ -18,8 +18,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     
   }
-onLogin(){this._authService.Login(this.username,this.password).subscribe(data=> this.currentUser = data);
-    if(this.currentUser != null)
+onLogin(){console.log(this.username + ",,,," + this.password)
+  this._authService.Login(this.username,this.password).subscribe(/*data=> this.currentUser = data*/);
+    if(localStorage.getItem("Bearer")!=null)
     {
       console.log(localStorage.getItem("Bearer"));
       //console.log(localStorage.getItem("UserType"));
