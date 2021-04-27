@@ -26,8 +26,7 @@ namespace CorporativeSN.Api.Controllers
         }
 
         [HttpPost("/token")]
-        public async Task<IActionResult> Token(string username, string password,
-            [FromHeader(Name = "Access-Control-Allow-Origin")][Required] string requiredHeader)
+        public async Task<IActionResult> Token(string username, string password)
         {
             var identity = await GetIdentity(username, password);
             if (identity == null)
