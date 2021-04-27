@@ -25,18 +25,18 @@ namespace CorporativeSN.Logic.Managers
         }
         public async Task<MessageDTO> CreateMessageAsync(MessageDTO message, CancellationToken cancellationToken = default)
         {
-            var add = _mapper.Map<Message>(message);
-            _corpSNContext.Messages.Add(add);
+            var add = _mapper.Map<UsersMessages>(message);
+            _corpSNContext.UsersMessages.Add(add);
             await _corpSNContext.SaveChangesAsync(cancellationToken);
             return _mapper.Map<MessageDTO>(add);
         }
 
         public async Task DeleteMessageAsync(int messageId, CancellationToken cancellationToken = default)
         {
-            var message = await _corpSNContext.Messages.FirstOrDefaultAsync(x => x.Id == messageId, cancellationToken);
+            var message = await _corpSNContext.UsersMessages.FirstOrDefaultAsync(x => x.Id == messageId, cancellationToken);
             if (message != null)
             {
-                _corpSNContext.Messages.Remove(message);
+                _corpSNContext.UsersMessages.Remove(message);
                 await _corpSNContext.SaveChangesAsync(cancellationToken);
             }
         }
@@ -49,7 +49,7 @@ namespace CorporativeSN.Logic.Managers
 
         public async Task<PagedResult<MessageDTO>> GetMessagesAsync(string search, int? fromIndex = null, int? toIndex = null, CancellationToken cancellationToken = default)
         {
-            var query = _corpSNContext.Messages.AsNoTracking();
+            var query = _corpSNContext.UsersMessages.AsNoTracking();
             if (!string.IsNullOrWhiteSpace(search))
             {
                 query = query.Where(x =>

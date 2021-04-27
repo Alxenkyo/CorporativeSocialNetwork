@@ -10,14 +10,14 @@ namespace CorporativeSN.Data
 {
     public interface ICorpSNContext
     {
-        DbSet<Chat> Chats { get; set; }
+        DbSet<Chats> Chats { get; set; }
         DbSet<ChatMember> ChatMembers { get; set; }
-        DbSet<Message> Messages { get; set; }
-        DbSet<MessageStatus> MessageStatuses { get; set; }
-        DbSet<User> Users { get; set; }
-        DbSet<UserType> UserTypes { get; set; }
-        DbSet<Department> Departments { get; set; }
-        DbSet<Event> Events { get; set; }
+        DbSet<UsersMessages> UsersMessages { get; set; }
+        //DbSet<MessageStatus> MessageStatuses { get; set; }
+        DbSet<Users> Users { get; set; }
+        DbSet<UserTypes> UserTypes { get; set; }
+        DbSet<Departments> Departments { get; set; }
+        DbSet<UserEvents> UserEvents { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

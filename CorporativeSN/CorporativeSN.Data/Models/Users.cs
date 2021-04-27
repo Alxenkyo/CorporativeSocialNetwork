@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CorporativeSN.Data.Models
 {
-    public class User
+    public class Users
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -13,7 +13,9 @@ namespace CorporativeSN.Data.Models
         public string Password { get; set; }
         public int UserTypeId { get; set; }
         public int DepartmentId { get; set; }
-        public List<Event> CreatedEvents { get; set; }
+        public List<UserEvents> CreatedEvents { get; set; }
         public List<ChatMember> ChatMembers { get; set; }
+        public List<Chats> CreatedChats { get; set; }
+        public List<UsersMessages> Messages { get; set; }
     }
 }

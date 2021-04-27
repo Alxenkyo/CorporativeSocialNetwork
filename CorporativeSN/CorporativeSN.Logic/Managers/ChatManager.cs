@@ -26,7 +26,7 @@ namespace CorporativeSN.Logic.Managers
         //add async to all metods
         public async Task<ChatDTO> CreateChatAsync(ChatDTO chat, CancellationToken cancellationToken = default)
         {
-            var add = _mapper.Map<Chat>(chat);
+            var add = _mapper.Map<Chats>(chat);
             _corpSNContext.Chats.Add(add);
             await _corpSNContext.SaveChangesAsync(cancellationToken);
             return _mapper.Map<ChatDTO>(add);

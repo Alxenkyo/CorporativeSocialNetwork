@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace CorporativeSN.Data.Models
 {
-    public class Message
+    public class UsersMessages
     {
         public int Id { get; set; }
         public string Text { get; set; }
         public int ChatId { get; set; }
-        public int UserId { get; set; }
+        public int CreatorId { get; set; }
         public DateTime CreatedDate { get; set; }
-        public int StatusId { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
+using System.ComponentModel.DataAnnotations;
 
 namespace CorporativeSN.Api.Controllers
 {
@@ -25,7 +26,8 @@ namespace CorporativeSN.Api.Controllers
         }
 
         [HttpPost("/token")]
-        public async Task<IActionResult> Token(string username, string password)
+        public async Task<IActionResult> Token(string username, string password,
+            [FromHeader(Name = "Access-Control-Allow-Origin")][Required] string requiredHeader)
         {
             var identity = await GetIdentity(username, password);
             if (identity == null)
@@ -62,7 +64,7 @@ namespace CorporativeSN.Api.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, person.Login),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, role.Type)
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, role.Name)
                 };
                 ClaimsIdentity claimsIdentity =
                 new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,

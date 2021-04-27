@@ -12,8 +12,8 @@ namespace CorporativeSN.Api.Profiles
     {
         public DepartmentProfile()
         {
-            CreateMap<Department, DepartmentDTO>();
-            CreateMap<DepartmentDTO, Department>();
+            CreateMap<Departments, DepartmentDTO>();
+            CreateMap<DepartmentDTO, Departments>();
         }
     }
 }

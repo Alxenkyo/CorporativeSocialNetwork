@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CorporativeSN.Data.Models
 {
-    public class Event
+    public class UserEvents
     {
         public int Id { get; set; }
         public string Name { get; set; }

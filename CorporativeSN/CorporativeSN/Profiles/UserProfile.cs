@@ -12,8 +12,8 @@ namespace CorporativeSN.Api.Profiles
     {
         public UserProfile()
         {
-            CreateMap<User, UserDTO>();
-            CreateMap<UserDTO, User>();
+            CreateMap<Users, UserDTO>();
+            CreateMap<UserDTO, Users>();
         }
     }
 }

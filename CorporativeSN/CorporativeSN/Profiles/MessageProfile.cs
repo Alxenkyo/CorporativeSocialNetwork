@@ -12,8 +12,8 @@ namespace CorporativeSN.Api.Profiles
     {
         public MessageProfile()
         {
-            CreateMap<Message, MessageDTO>();
-            CreateMap<MessageDTO, Message>();
+            CreateMap<UsersMessages, MessageDTO>();
+            CreateMap<MessageDTO, UsersMessages>();
         }
     }
 }

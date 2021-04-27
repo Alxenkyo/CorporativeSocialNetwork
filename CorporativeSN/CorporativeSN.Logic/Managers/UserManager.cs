@@ -26,7 +26,7 @@ namespace CorporativeSN.Logic.Managers
 
         public async Task<UserDTO> CreateUserAsync(UserDTO user, CancellationToken cancellationToken = default)
         {
-            var add = _mapper.Map<User>(user);
+            var add = _mapper.Map<Users>(user);
             _corpSNContext.Users.Add(add);
             await _corpSNContext.SaveChangesAsync(cancellationToken);
             return _mapper.Map<UserDTO>(add);

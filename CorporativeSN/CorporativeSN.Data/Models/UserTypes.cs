@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace CorporativeSN.Data.Models
 {
-    public class UserType
+    public class UserTypes
     {
         public int Id { get; set; }
-        public string Type { get; set; }
-        public List<User> Users { get; set; }
+        public string Name { get; set; }
+        public List<Users> Users { get; set; }
     }
 }

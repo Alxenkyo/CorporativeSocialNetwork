@@ -26,31 +26,31 @@ namespace CorporativeSN.Logic.Managers
         
         public async Task<EventDTO> CreateEventAsync(EventDTO eventNote, CancellationToken cancellationToken = default)
         {
-            var add = _mapper.Map<Event>(eventNote);
-            _corpSNContext.Events.Add(add);
+            var add = _mapper.Map<UserEvents>(eventNote);
+            _corpSNContext.UserEvents.Add(add);
             await _corpSNContext.SaveChangesAsync(cancellationToken);
             return _mapper.Map<EventDTO>(add);
         }
 
         public async Task DeleteEventAsync(int eventId, CancellationToken cancellationToken = default)
         {
-            var eventNote = await _corpSNContext.Events.FirstOrDefaultAsync(x => x.Id == eventId, cancellationToken);
+            var eventNote = await _corpSNContext.UserEvents.FirstOrDefaultAsync(x => x.Id == eventId, cancellationToken);
             if (eventNote != null)
             {
-                _corpSNContext.Events.Remove(eventNote);
+                _corpSNContext.UserEvents.Remove(eventNote);
                 await _corpSNContext.SaveChangesAsync(cancellationToken);
             }
         }
 
         public async Task<EventDTO> GetEventAsync(int eventId, CancellationToken cancellationToken = default)
         {
-            var eventNote = await _corpSNContext.Events.AsNoTracking().FirstOrDefaultAsync(x => x.Id == eventId, cancellationToken);
+            var eventNote = await _corpSNContext.UserEvents.AsNoTracking().FirstOrDefaultAsync(x => x.Id == eventId, cancellationToken);
             return _mapper.Map<EventDTO>(eventNote);
         }
 
         public async Task<PagedResult<EventDTO>> GetEventsAsync(string search, int? fromIndex = null, int? toIndex = null, CancellationToken cancellationToken = default)
         {
-            var query = _corpSNContext.Events.AsNoTracking();
+            var query = _corpSNContext.UserEvents.AsNoTracking();
             if (!string.IsNullOrWhiteSpace(search))
             {
                 query = query.Where(x =>
@@ -73,7 +73,7 @@ namespace CorporativeSN.Logic.Managers
 
         public async Task<EventDTO> UpdateEventAsync(EventDTO eventNote, CancellationToken cancellationToken = default)
         {
-            var update = await _corpSNContext.Events.FirstOrDefaultAsync(x => x.Id == eventNote.Id, cancellationToken);
+            var update = await _corpSNContext.UserEvents.FirstOrDefaultAsync(x => x.Id == eventNote.Id, cancellationToken);
             if (update != null)
             {
                 _mapper.Map(eventNote, update);

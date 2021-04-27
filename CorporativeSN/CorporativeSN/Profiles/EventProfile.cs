@@ -12,8 +12,8 @@ namespace CorporativeSN.Api.Profiles
     {
         public EventProfile()
         {
-            CreateMap<Event, EventDTO>();
-            CreateMap<EventDTO, Event>();
+            CreateMap<UserEvents, EventDTO>();
+            CreateMap<EventDTO, UserEvents>();
         }
     }
 }

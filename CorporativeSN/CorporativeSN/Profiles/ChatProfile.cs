@@ -12,8 +12,8 @@ namespace CorporativeSN.Api.Profiles
     {
         public ChatProfile()
         {
-            CreateMap<Chat, ChatDTO>();
-            CreateMap<ChatDTO, Chat>();
+            CreateMap<Chats, ChatDTO>();
+            CreateMap<ChatDTO, Chats>();
         }
     }
 }

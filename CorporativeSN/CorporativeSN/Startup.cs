@@ -36,6 +36,7 @@ namespace CorporativeSN
         {
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
+            services.AddCors();
             services.AddDbContext<ICorpSNContext, CorpSNContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CorpSN")));
             services.AddScoped<IChatManager, ChatManager>();
             services.AddScoped<IMessageManager, MessageManager>();
@@ -89,6 +90,8 @@ namespace CorporativeSN
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseAuthentication();
 

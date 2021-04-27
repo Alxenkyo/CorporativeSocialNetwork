@@ -9,6 +9,6 @@ namespace CorporativeSN.Data.Models
     {
         public int Id { get; set; }
         public string Status { get; set; }
-        public List<Message> Messages { get; set; }
+        public List<UsersMessages> Messages { get; set; }
     }
 }

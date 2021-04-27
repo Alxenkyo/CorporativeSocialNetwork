@@ -12,23 +12,23 @@ namespace CorporativeSN.Api
         {
             if (!context.UserTypes.Any())
             {
-                context.UserTypes.Add(new UserType
+                context.UserTypes.Add(new UserTypes
                 {
-                    Type="Admin"
+                    Name="Admin"
                 });
-                context.UserTypes.Add(new UserType
+                context.UserTypes.Add(new UserTypes
                 {
-                    Type = "User"
+                    Name = "User"
                 });
                 context.SaveChanges();
             }
             if (!context.Departments.Any())
             {
-                context.Departments.Add(new Department
+                context.Departments.Add(new Departments
                 {
                     Name = "Admin"
                 });
-                context.Departments.Add(new Department
+                context.Departments.Add(new Departments
                 {
                     Name = "JavaDev"
                 });
@@ -36,7 +36,7 @@ namespace CorporativeSN.Api
             }
             if (!context.Users.Any())
             {
-                context.Users.Add(new User
+                context.Users.Add(new Users
                 {
                     Name = "Admin",
                     Login = "admin",
@@ -44,7 +44,7 @@ namespace CorporativeSN.Api
                     DepartmentId = 1,
                     UserTypeId = 1
                 });
-                context.Users.Add(new User
+                context.Users.Add(new Users
                 {
                     Name = "kekw",
                     Login = "kekw",
