@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EMoHSf+Pq2JRputwxfDsleDr942NWdZQ3sHzzzh6unZG7KbyJqN+OjItW6+WmaaE6ySTZ6vx8xF7LWjcUXm8zA==",
+  "dgSpecHash": "RLoInmyf858MmsZnh4lqwk13/FxMsL8TGORBL0ltuuZ/ttKJhRYEWLTUwLLbozTL1LU7TGxrOV5+hyZ08g1YFQ==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj",
+  "projectFilePath": "D:\\Projects\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
@@ -10,6 +10,7 @@
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\2.2.0\\microsoft.aspnetcore.connections.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.http\\2.2.0\\microsoft.aspnetcore.http.2.2.0.nupkg.sha512",

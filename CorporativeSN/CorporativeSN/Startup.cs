@@ -36,7 +36,14 @@ namespace CorporativeSN
         {
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "MyAllowOrigins",
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                                  });
+            }); ;
             services.AddDbContext<ICorpSNContext, CorpSNContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CorpSN")));
             services.AddScoped<IChatManager, ChatManager>();
             services.AddScoped<IMessageManager, MessageManager>();
@@ -76,6 +83,7 @@ namespace CorporativeSN
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
@@ -91,7 +99,7 @@ namespace CorporativeSN
 
             app.UseRouting();
 
-            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowCredentials().AllowAnyMethod());
+            app.UseCors("MyAllowOrigins");
 
             app.UseAuthentication();
 

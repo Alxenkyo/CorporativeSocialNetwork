@@ -12,9 +12,11 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Cors;
 
 namespace CorporativeSN.Api.Controllers
 {
+    [EnableCors("MyAllowOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
@@ -25,7 +27,7 @@ namespace CorporativeSN.Api.Controllers
             _userManager = userManager;
         }
 
-        [HttpPost("/token")]
+        [HttpPost("token")]
         public async Task<IActionResult> Token(string username, string password)
         {
             var identity = await GetIdentity(username, password);
@@ -47,8 +49,8 @@ namespace CorporativeSN.Api.Controllers
 
             var response = new
             {
-                access_token = encodedJwt,
-                username = identity.Name
+                token = encodedJwt,
+                role = identity.Name
             };
 
             return Ok(response);
