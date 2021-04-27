@@ -91,7 +91,7 @@ namespace CorporativeSN
 
             app.UseRouting();
 
-            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowCredentials().AllowAnyMethod());
 
             app.UseAuthentication();
 
