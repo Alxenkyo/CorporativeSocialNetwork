@@ -1,29 +1,17 @@
-<div class="login">  
-    <div class="row" style="height: 200px"></div>
-    <div class="row mt-5  "> 
-      <div class="col col-md-3  container-fluid"  > 
-    <div class="card">
-        <article class="card-body">
-        <!-- <a href="" class="float-right btn btn-outline-primary">Sign up</a> -->
-        <h4 class="card-title mb-4 mt-1">Sign in</h4>
-           <form>
-            <div class="form-group">
-              <label>Please enter your login</label>
-                <input name="userName"  class="form-control" [(ngModel)]="username" type="email">
-            </div>  
-            <div class="form-group">
-              <label>Please enter password</label>
-                <input class="form-control"  name="password" [(ngModel)]="password" type="password">
-            </div>   
-            <div class="form-group row"> 
-                <div class="col-md-6"></div>
-              <div class="col-md-6">
-                <button type="submit" class="btn btn-primary btn-block" (click)="onLogin()">Login</button>
-              </div>
-            </div>                                                
-        </form>
-        </article>
-        </div>  
-      </div>
-    </div> 
-    </div>  
+<div class="col"><form>
+  <div class="form-group">
+    <label>Введите логин</label>
+      <input [(ngModel)]="username" name="userName"  class="form-control" type="email">
+  </div>  
+  <div class="form-group">
+    <label>Введите пароль</label>
+      <input class="form-control"  name="password" [(ngModel)]="password" type="password">
+  </div>   
+  <div class="form-group row"> 
+      <div class="col-md-6"></div>
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-primary btn-block" (click)="onLogin()">Войти</button>
+    </div>
+  </div>                                                
+</form>
+</div>

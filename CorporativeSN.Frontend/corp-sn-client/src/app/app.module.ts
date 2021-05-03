@@ -7,14 +7,16 @@ import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
 import { AdminComponent } from './admin/admin.component';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ChatComponent,
-    AdminComponent
+    AdminComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,16 @@
-<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="isUserLogin">
-  <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/">Home</a>
-      <a class="nav-item nav-link" (click)="logout()">Logout</a>
-  </div>
-</nav>
-
-<!-- main app container -->
 <div class="container">
-  <router-outlet></router-outlet>
-</div>
-
+  <div class="row" style="background-color:tomato;">
+      <div class="col-4"><h1><b>Company Name</b></h1></div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-lg-3" *ngIf="isLogged">
+        <ul>
+          <li type = "button" class="btn btn-success" (click)="Profile()">Ваш профиль</li>
+          <li type = "button" class="btn btn-success" (click)="Chats()">Сообщения</li>
+          <li type = "button" class="btn btn-success" (click)="Calendar()">Ваш календарь</li>
+          <li type = "button" class="btn btn-success" (click)="Logout()">Выйти из системы</li>
+        </ul>
+      </div>
+      <router-outlet></router-outlet>
+  </div>
+  </div>

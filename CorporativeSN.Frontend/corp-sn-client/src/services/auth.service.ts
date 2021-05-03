@@ -11,34 +11,48 @@ import {Observable} from 'rxjs';
 export class AuthService {
   authData: AuthOptions = new AuthOptions;
   constructor(private http: HttpClient,private router: Router) { }
-  Login(userName: string, password: string)
+  Login(userName: string, password: string) : Promise<any>
   {
-    const httpOptions = {
+    /*const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Access-Control-Allow-Origin' : '*'
       }),
       withCredentionals: true,
       
-    };
-    return this.http.post(environment.apiUrl+'/login/token?username='+userName+'&password='+password,{} /*httpOptions*/ )
-            .pipe(map(data => {
-              console.log(data);
-               //this.authData = data;
-               //localStorage.setItem('Bearer', JSON.stringify(data.access_token));
+    };*/
+    var promise = new Promise((resolve, reject) => {
+     this.http.post<any>(environment.apiUrl+'/login/token?username='+userName+'&password='+password,{} /*httpOptions*/ ).subscribe(
+              (response) => {
+              console.log(JSON.stringify(response.body));
+               localStorage.setItem('Bearer', JSON.stringify(response.body));
                //localStorage.setItem('UserRole', JSON.stringify(data.username));
-            }));
+               resolve(true);},
+              (error)=>{
+                alert("Invalid username or password");
+              });
+    });
+              return promise;
 }
   Logout(){
       localStorage.removeItem('Bearer'); 
       localStorage.removeItem('UserType');
   }
-  IsUserLogin(){
-   
-    var key = localStorage.getItem('Bearer'); 
-    if(key!=null){
-      return true
-    }
-    else return false
+  IsUserLogin(): Promise<any>
+  { 
+    var promise = new Promise((resolve, reject) => {
+      var key = localStorage.getItem('Bearer'); 
+      const  headers = new  HttpHeaders().set('Authorization', 'Bearer ' + key);
+      this.http.get(environment.apiUrl + "/check/", {headers}).subscribe(resp => { 
+        resolve(resp);
+      },
+      (error: Response)=>{
+        if(error.status == 401 || 405){  
+          this.router.navigateByUrl('/login');
+          reject("Not logged");
+        }
+      });
+    });
+    return promise;
 }
 }

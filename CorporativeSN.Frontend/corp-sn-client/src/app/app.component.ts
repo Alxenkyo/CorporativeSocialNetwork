@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +10,33 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'corp-sn-client';
   isUserLogin: boolean = false;
-  constructor(private router: Router) {}
+  static isLogged: boolean = false;
+  get isLogged(){
+    return AppComponent.isLogged;
+}
+  constructor(private router: Router, private _authService: AuthService) {}
   ngOnInit(){
     this.isLogin();
+    this.isUserLogin=AppComponent.isLogged;
 }
 isLogin(){
-  var value = localStorage.getItem('Bearer')
-    if(value!=null){ 
-      this.router.navigate(['/chat']);
-      this.isUserLogin = true;
-    }else{ 
-      this.router.navigate(['/login'])
-      this.isUserLogin = false;
-    }
+  var promise = this._authService.IsUserLogin(); 
+      promise.then(value => {
+        if(value){ 
+          this.router.navigate(['/chats']);
+          AppComponent.isLogged=true;
+        }else{ 
+          this.router.navigate(['/login']);
+          AppComponent.isLogged=false;
+        }
+      });  
 }
-logout() {
+Logout() {
   this.router.navigate(['/login']);
+  this.isUserLogin = false;
+  AppComponent.isLogged=false;
 }
+Profile(){};
+  Chats(){};
+  Calendar(){};
 }
