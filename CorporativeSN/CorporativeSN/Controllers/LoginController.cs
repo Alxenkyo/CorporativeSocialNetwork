@@ -47,13 +47,13 @@ namespace CorporativeSN.Api.Controllers
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            var response = new
-            {
-                token = encodedJwt,
-                role = identity.Name
-            };
-
-            return Ok(response);
+            //var response = new
+            //{
+            //     encodedJwt
+            //};
+            var role = identity.Claims.FirstOrDefault(x=>x.Type==ClaimTypes.Role).Value;
+            Response.Headers.Add("X-User-Type", role);
+            return Ok(encodedJwt);
         }
 
         private async Task<ClaimsIdentity> GetIdentity(string username, string password, CancellationToken cancellationToken = default)
