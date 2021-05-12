@@ -13,20 +13,14 @@ export class AuthService {
   constructor(private http: HttpClient,private router: Router) { }
   Login(userName: string, password: string) : Promise<any>
   {
-    /*const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Access-Control-Allow-Origin' : '*'
-      }),
-      withCredentionals: true,
-      
-    };*/
     var promise = new Promise((resolve, reject) => {
-     this.http.post<any>(environment.apiUrl+'/login/token?username='+userName+'&password='+password,{} /*httpOptions*/ ).subscribe(
+     this.http.post<any>(environment.apiUrl+'/login/token?username='+userName+'&password='+password,{},{observe: 'response'}).subscribe(
               (response) => {
-              console.log(JSON.stringify(response.body));
-               localStorage.setItem('Bearer', JSON.stringify(response.body));
-               //localStorage.setItem('UserRole', JSON.stringify(data.username));
+                var res = response.body.access_token
+                //console.log(res);
+                var role = response.headers.get('X-User-Type');
+                localStorage.setItem('Bearer', res);
+                localStorage.setItem('UserRole', role ?? "kekw");
                resolve(true);},
               (error)=>{
                 alert("Invalid username or password");
@@ -34,10 +28,7 @@ export class AuthService {
     });
               return promise;
 }
-  Logout(){
-      localStorage.removeItem('Bearer'); 
-      localStorage.removeItem('UserType');
-  }
+
   IsUserLogin(): Promise<any>
   { 
     var promise = new Promise((resolve, reject) => {
@@ -55,4 +46,10 @@ export class AuthService {
     });
     return promise;
 }
+
+Logout(){
+  localStorage.removeItem('Bearer'); 
+  localStorage.removeItem('UserType');
+}
+
 }

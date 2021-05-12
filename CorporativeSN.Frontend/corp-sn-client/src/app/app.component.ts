@@ -9,16 +9,19 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'corp-sn-client';
-  isUserLogin: boolean = false;
+  static isAdmin: boolean = false;
   static isLogged: boolean = false;
+
   get isLogged(){
     return AppComponent.isLogged;
+}
+get isAdmin(){
+  return AppComponent.isAdmin;
 }
   constructor(private router: Router, private _authService: AuthService) {}
   ngOnInit(){
     this.isLogin();
-    this.isUserLogin=AppComponent.isLogged;
-}
+  }
 isLogin(){
   var promise = this._authService.IsUserLogin(); 
       promise.then(value => {
@@ -33,10 +36,12 @@ isLogin(){
 }
 Logout() {
   this.router.navigate(['/login']);
-  this.isUserLogin = false;
   AppComponent.isLogged=false;
 }
 Profile(){};
   Chats(){};
   Calendar(){};
+  AdminPage(){
+    this.router.navigateByUrl("/admin")
+  }
 }
