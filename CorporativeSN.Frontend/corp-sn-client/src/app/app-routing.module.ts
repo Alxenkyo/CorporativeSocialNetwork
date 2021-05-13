@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: 'chats', component: ChatComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'admin', component: AdminComponent},
+  //{path: 'calendar', component: CalendarComponent}
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

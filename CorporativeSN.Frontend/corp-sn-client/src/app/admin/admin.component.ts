@@ -14,16 +14,18 @@ export class AdminComponent implements OnInit {
 
   users: User[] = [];
   columnDefs = [
-    { field: 'Id' },
-    { field: 'Name' },
-    { field: 'UserTypeId'},
-    { field: 'DepartmentId'}
+    { field: 'id' },
+    { field: 'name' },
+    { field: 'usertypeId'},
+    { field: 'depId'}
 ];
   ngOnInit(): void {
     this.GetUsers();
   }
   GetUsers()
-  {this._userService.GetUsers().subscribe(data=>this.users=data);
+  {this._userService.GetUsers().subscribe(data=>{
+    console.log(data)
+    this.users=data});
     
   }
 }

@@ -34,12 +34,12 @@ export class AuthService {
     var promise = new Promise((resolve, reject) => {
       var key = localStorage.getItem('Bearer'); 
       const  headers = new  HttpHeaders().set('Authorization', 'Bearer ' + key);
-      this.http.get(environment.apiUrl + "/check/", {headers}).subscribe(resp => { 
+      this.http.get(environment.apiUrl + "/login/check", {headers}).subscribe(resp => { 
         resolve(resp);
+        console.log(resp)
       },
       (error: Response)=>{
         if(error.status == 401 || 405){  
-          this.router.navigateByUrl('/login');
           reject("Not logged");
         }
       });

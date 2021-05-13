@@ -25,23 +25,36 @@ get isAdmin(){
 isLogin(){
   var promise = this._authService.IsUserLogin(); 
       promise.then(value => {
-        if(value){ 
           this.router.navigate(['/chats']);
           AppComponent.isLogged=true;
-        }else{ 
+        },
+         error=>{
           this.router.navigate(['/login']);
           AppComponent.isLogged=false;
-        }
-      });  
+         }
+      )
 }
+
 Logout() {
   this.router.navigate(['/login']);
   AppComponent.isLogged=false;
+  localStorage.removeItem('Bearer')
 }
-Profile(){};
-  Chats(){};
-  Calendar(){};
-  AdminPage(){
-    this.router.navigateByUrl("/admin")
-  }
+
+Profile(){
+  this.router.navigateByUrl("/profile")
+};
+
+Chats(){
+  this.router.navigateByUrl("/chats")
+};
+
+Calendar(){
+  this.router.navigateByUrl("/calendar")
+};
+
+AdminPage(){
+  this.router.navigateByUrl("/admin")
+}
+
 }
