@@ -13,6 +13,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CorporativeSN.Api.Controllers
 {
@@ -47,13 +48,21 @@ namespace CorporativeSN.Api.Controllers
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            //var response = new
-            //{
-            //     encodedJwt
-            //};
-            var role = identity.Claims.FirstOrDefault(x=>x.Type==ClaimTypes.Role).Value;
+            var response = new
+            {
+                access_token = encodedJwt
+            };
+            var role = identity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value;
+            Response.Headers.Add("Access-Control-Expose-Headers", "X-User-Type");
             Response.Headers.Add("X-User-Type", role);
-            return Ok(encodedJwt);
+            return Ok(response);
+        }
+
+        [Authorize]
+        [HttpGet("check")]
+        public async Task<IActionResult> CheckAuth()
+        {
+            return Ok();
         }
 
         private async Task<ClaimsIdentity> GetIdentity(string username, string password, CancellationToken cancellationToken = default)

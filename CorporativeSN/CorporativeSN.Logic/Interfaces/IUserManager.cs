@@ -15,7 +15,7 @@ namespace CorporativeSN.Logic.Interfaces
         Task<UserDTO> CreateUserAsync(UserDTO user, CancellationToken cancellationToken = default);
         Task<UserDTO> UpdateUserAsync(UserDTO user, CancellationToken cancellationToken = default);
         Task DeleteUserAsync(int chatId, CancellationToken cancellationToken = default);
-
+        Task<UserDTO> GetUserProfile(string username, CancellationToken cancellationToken = default);
         Task<UserDTO> AuthUserAsync(string login, string password, CancellationToken cancellation = default);
         Task <UserTypeDTO> GetUserRole(UserDTO user, CancellationToken cancellationToken = default);
     }

@@ -1,5 +1,7 @@
 ﻿using CorporativeSN.Logic.Interfaces;
 using CorporativeSN.Logic.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace CorporativeSN.Api.Controllers
 {
+    [EnableCors("MyAllowOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -22,6 +25,7 @@ namespace CorporativeSN.Api.Controllers
             _userManager = userManager;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public async Task<IActionResult> GetUsersAsync(
             [FromQuery] string search,
@@ -33,12 +37,21 @@ namespace CorporativeSN.Api.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetUserAsync(
             int userId,
             CancellationToken cancellationToken = default)
         {
             var result = await _userManager.GetUserAsync(userId, cancellationToken);
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetUserProfile(CancellationToken cancellationToken = default)
+        {
+            var result = await _userManager.GetUserProfile(User.Identity.Name, cancellationToken);
             return Ok(result);
         }
 

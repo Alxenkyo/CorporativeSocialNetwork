@@ -58,6 +58,7 @@ namespace CorporativeSN
                     .AddJwtBearer(options =>
                     {
                         options.RequireHttpsMetadata = false;
+                        options.SaveToken = true;
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
                             // укзывает, будет ли валидироваться издатель при валидации токена
