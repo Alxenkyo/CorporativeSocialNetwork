@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component'
 import { AgGridModule } from 'ag-grid-angular';
+import { DocsStorageComponent } from './docs-storage/docs-storage.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AgGridModule } from 'ag-grid-angular';
     LoginComponent,
     ChatComponent,
     AdminComponent,
-    ProfileComponent
+    ProfileComponent,
+    DocsStorageComponent
   ],
   imports: [
     BrowserModule,

@@ -41,4 +41,9 @@ export class UserService {
      return promise;
   }
 
+  DeleteUser(){}
+
+  CreateUser(){}
+
+  GetUserById(){}
 }
