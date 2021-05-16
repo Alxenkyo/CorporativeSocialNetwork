@@ -48,9 +48,9 @@ namespace CorporativeSN.Logic.Managers
             return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task<UserDTO> GetUserProfile(string username, CancellationToken cancellationToken = default)
+        public async Task<UserDTO> GetUserProfile(int userId, CancellationToken cancellationToken = default)
         {
-            var user = await _corpSNContext.Users.Include(x=>x.CreatedChats).AsNoTracking().FirstOrDefaultAsync(x => x.Name == username, cancellationToken);
+            var user = await _corpSNContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
             return _mapper.Map<UserDTO>(user);
         }
 

@@ -44,28 +44,34 @@ namespace CorporativeSN.Logic.Managers
 
         public async Task<ChatDTO> GetChatAsync(int chatId, CancellationToken cancellationToken = default)
         {
-            var chat = await _corpSNContext.Chats.AsNoTracking().FirstOrDefaultAsync(x => x.Id == chatId, cancellationToken);
+            var chat = await _corpSNContext.Chats.Include(x=>x.Messages).AsNoTracking().FirstOrDefaultAsync(x => x.Id == chatId, cancellationToken);
             return _mapper.Map<ChatDTO>(chat);
         }
 
-        public async Task<PagedResult<ChatDTO>> GetChatsAsync(string search, int? fromIndex = null, int? toIndex = null, CancellationToken cancellationToken = default)
+        public async Task<PagedResult<ChatDTO>> GetChatsAsync(int userId, CancellationToken cancellationToken = default)
         {
-            var query = _corpSNContext.Chats.AsNoTracking();
-            if (!string.IsNullOrWhiteSpace(search))
-            {
-                query = query.Where(x =>
-                    x.Name.ToLower().Contains(search.ToLower()));
-            }
-            if (fromIndex.HasValue)
-            {
-                query = query.Skip(fromIndex.Value);
-            }
-            query = query.OrderBy(x => x.Name);
-            var total = await query.CountAsync(cancellationToken);
-            if (fromIndex.HasValue && toIndex.HasValue)
-            {
-                query = query.Skip(fromIndex.Value).Take(toIndex.Value - fromIndex.Value + 1);
-            }
+            var query =  _corpSNContext.Chats
+                .Include(x => x.Members)
+                .AsEnumerable()
+                .Where(x => x.Members.Exists(x => x.UserId == userId))
+                //.Include(x => x.Messages)
+                
+                ;
+            //if (!string.IsNullOrWhiteSpace(search))
+            //{
+            //    query = query.Where(x =>
+            //        x.Name.ToLower().Contains(search.ToLower()));
+            //}
+            //if (fromIndex.HasValue)
+            //{
+            //    query = query.Skip(fromIndex.Value);
+            //}
+            //query = query.OrderBy(x => x.Name);
+            var total =  query.Count();
+            //if (fromIndex.HasValue && toIndex.HasValue)
+            //{
+            //    query = query.Skip(fromIndex.Value).Take(toIndex.Value - fromIndex.Value + 1);
+            //}
             //var items = _mapper.ProjectTo<ChatDTO>(query).ToArrayAsync(cancellationToken);
             var items =  _mapper.Map<IEnumerable<ChatDTO>>(query);
             return new PagedResult<ChatDTO> { Items = (IEnumerable<ChatDTO>)items, Total = total };

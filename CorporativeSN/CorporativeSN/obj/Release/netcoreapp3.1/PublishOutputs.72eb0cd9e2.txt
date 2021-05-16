@@ -1,4 +1,5 @@
 D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\CorporativeSN.Api.exe
+D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\web.config
 D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.Development.json
 D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.json
 D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\CorporativeSN.Api.dll

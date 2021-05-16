@@ -10,7 +10,7 @@ namespace CorporativeSN.Logic.Interfaces
 {
     public interface IChatManager
     {
-        Task<PagedResult<ChatDTO>> GetChatsAsync(string search, int? fromIndex = default, int? toIndex = default, CancellationToken cancellationToken = default);
+        Task<PagedResult<ChatDTO>> GetChatsAsync(int userId, CancellationToken cancellationToken = default);
         Task<ChatDTO> GetChatAsync(int chatId, CancellationToken cancellationToken = default);
         Task<ChatDTO> CreateChatAsync(ChatDTO chat, CancellationToken cancellationToken = default);
         Task<ChatDTO> UpdateChatAsync(ChatDTO chat, CancellationToken cancellationToken = default);

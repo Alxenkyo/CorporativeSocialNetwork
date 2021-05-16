@@ -51,7 +51,8 @@ namespace CorporativeSN.Api.Controllers
         [HttpGet("profile")]
         public async Task<IActionResult> GetUserProfile(CancellationToken cancellationToken = default)
         {
-            var result = await _userManager.GetUserProfile(User.Identity.Name, cancellationToken);
+            int userId = int.Parse(User.Claims.Where(c => c.Type == "Id").Select(c => c.Value).SingleOrDefault());
+            var result = await _userManager.GetUserProfile(userId, cancellationToken);
             return Ok(result);
         }
 

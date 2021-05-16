@@ -22,6 +22,7 @@ namespace CorporativeSN.Api.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        private const string IdClaim = "Id";
         private readonly IUserManager _userManager;
         public LoginController(IUserManager userManager)
         {
@@ -74,7 +75,8 @@ namespace CorporativeSN.Api.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, person.Login),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, role.Name)
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, role.Name),
+                    new Claim(IdClaim, person.Id.ToString())
                 };
                 ClaimsIdentity claimsIdentity =
                 new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,

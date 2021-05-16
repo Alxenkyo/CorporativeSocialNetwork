@@ -146,3 +146,4 @@ D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\CorporativeSN.
 D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\CorporativeSN.Api.dll
 D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\CorporativeSN.Api.pdb
 D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\CorporativeSN.Api.genruntimeconfig.cache
+D:\Projects\CorporativeSN\CorporativeSN\bin\Release\netcoreapp3.1\web.config

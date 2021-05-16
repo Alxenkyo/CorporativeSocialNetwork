@@ -19,12 +19,10 @@ namespace CorporativeSN.Api.Controllers
     public class MessageController : ControllerBase
     {
         private readonly IMessageManager _messageManager;
-        private readonly IHubContext<ChatHub> _hubContext;
 
         public MessageController(IMessageManager messageManager, IHubContext<ChatHub> hubContext)
         {
             _messageManager = messageManager;
-            _hubContext = hubContext;
         }
 
         [HttpGet]
