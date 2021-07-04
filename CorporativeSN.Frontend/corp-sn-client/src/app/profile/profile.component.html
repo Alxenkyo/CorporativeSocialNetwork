@@ -1,15 +1,35 @@
-<div class="row">
-    <h1>Ваш профиль</h1>
-</div>
+
 <div class="row"><div class="col-lg-3" id="profilepic">
-    <img src="../../assets/images/catto.jpg" id="profilepicture"/>
-    
+    <span *ngIf="profile.imageData!==null &&  profile.imageData!==''; then exist; else notexist"></span>
+<ng-template #exist> 
+    <img [src]="'data:image/jpg;base64,'+profile.imageData" id="profilepicture" style="height: 200px; width: auto;">
+</ng-template>
+<ng-template #notexist>
+    <img src="../../assets/images/default-avatar.png" style="height: 200px; width: 200px;">
+</ng-template>
 </div>
 <div class="col-lg-8" style="margin-left:40px">
-    <h1 [textContent]="profile.name"></h1>
-    <h2 [textContent]="profile.depId"></h2>
-    <button type="button" class="btn btn-primary">Изменить</button>
-    
+<div class="row">
+    <div>{{profile.firstName}} {{profile.lastName}}</div>
+</div>
+<div class="row">
+    <div>Email: {{profile.email}}</div>
+</div>
+<div class="row">
+    <div>Отдел: {{profile.departmentName}}</div>
+</div>
+<div class="row">
 </div>
 </div>
-<div class="row"><button type="button" class="btn btn-primary">Загрузить</button></div>
+
+
+</div>
+<div class="row" style="margin-top:20px">
+    <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload style="display: none;" accept="image/*">
+    <div><span class="changePhoto" (click)="fileUpload.click()">
+        <img src="../../assets/images/upload.png" style="height: 25px;width: 25px;">Загрузить фото</span></div>
+</div>
+<div class="row" style="margin-top:20px">
+    <div><span class="changePhoto" (click)="DeleteImage()" style="padding-right: 22px;">
+        <img src="../../assets/images/close.png" style="height: 25px;width: 25px;">Удалить фото</span></div>
+</div>

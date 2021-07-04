@@ -29,12 +29,12 @@ export class AuthService {
               return promise;
 }
 
-  IsUserLogin(): Promise<any>
+  IsUserLogin(connectionId: string): Promise<any>
   { 
     var promise = new Promise((resolve, reject) => {
       var key = localStorage.getItem('Bearer'); 
       const  headers = new  HttpHeaders().set('Authorization', 'Bearer ' + key);
-      this.http.get(environment.apiUrl + "/login/check", {headers}).subscribe(resp => { 
+      this.http.get(environment.apiUrl + "/login/check?connectionId="+connectionId, {headers}).subscribe(resp => { 
         resolve(resp);
         console.log(resp)
       },

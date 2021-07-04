@@ -1,0 +1,84 @@
+.itemlistofchats{
+    padding-left:5px;
+    background-color: rgba(211, 25, 248, 0.001);
+    color: black;
+    text-align: left;
+    &:hover{
+        background-color: rgba(211, 25, 248, 0.1);
+    }
+    &:active{
+        background-color: rgba(211, 25, 248, 0.3);
+    }
+}
+.list_of_chats{
+    margin-left:-40px;
+    list-style-type: none;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 500px;
+    width: 700px;
+}
+.Messages{
+    list-style-type: none;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 450px;
+    border-bottom: 1px solid gray;
+    display:  flex;
+    flex-direction: column-reverse;
+}
+div{
+    border-radius: 5px;
+}
+.spanbutton{
+    margin-right:10px;
+    margin-left:10px;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.members{
+    font-size: 12px;
+    &:hover{
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+.backbutton{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    &:hover{
+        background-color: rgba(211, 25, 248, 0.144);
+        cursor: pointer;
+    }
+}
+.attach{
+    margin-left:15px;
+    &:hover{
+        text-decoration: underline;
+        cursor: pointer;
+        
+    }
+}
+.file-input {
+    display: none;
+  }
+.createChat{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    &:hover{
+        background-color: rgba(211, 25, 248, 0.1);
+        cursor: pointer;
+    }
+    &:active{
+        background-color: rgba(211, 25, 248, 0.3);
+    }
+}
+.imgclose{
+    &:hover{
+        cursor: pointer;
+    }
+}

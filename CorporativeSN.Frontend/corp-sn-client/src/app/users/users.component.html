@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+    <span><img src="../../assets/images/search.png" style="height: 25px; width: 25px;"></span>
+    <input #search type="search" class="form-control" placeholder="Поиск" (input)="FilterValue(search.value)" style="width: 300px; height: 30px;">
+</div>
+    <ul>
+    <li *ngFor="let user of searchUsers">
+        <div class="container " *ngIf="user.id !==userId">
+            <div class="row" style="margin-top:20px;">
+            <div style="margin-right: 10px; margin-left: -20px;"><span *ngIf="user.imageData!==null &&  user.imageData!==''; then exist; else notexist"></span>
+                <ng-template #exist> 
+                    <img [src]="'data:image/jpg;base64,'+user.imageData" id="profilepicture" style="height: 50px; width: 50px;">
+                </ng-template>
+                <ng-template #notexist>
+                    <img src="../../assets/images/default-avatar.png" style="height: 50px; width: 50px;">
+                </ng-template></div>
+            <div class="col">
+        <div class="row" >
+            {{user.firstName}} {{user.lastName}}
+        </div>
+        <div class="row" *ngIf="user.role==='admin'">
+           Роль: {{user.role}}
+        </div>
+        <div class="row">
+           Отдел: {{user.departmentName}}
+        </div>
+        <div class="row" style="border-bottom: 2px solid gray;">
+            <label (click)="Write(user.id)">Написать сообщение</label>
+        </div>
+    </div>
+</div>
+    </div>
+    </li>
+</ul>
+</div>

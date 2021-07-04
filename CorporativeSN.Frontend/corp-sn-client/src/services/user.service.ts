@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { User } from 'src/model/user';
 import { map } from 'rxjs/operators';
+import { userModel } from 'src/model/userModel';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +17,13 @@ export class UserService {
   GetUsers(): Observable<any>
   {
     return this.http.get<any>(environment.apiUrl+'/user',{headers: {'Accept': 'application/json', 'Authorization' : 'Bearer ' +
-    localStorage.getItem('Bearer')} }).pipe(map(data=>{
-      console.log(data.items)
-      let userlist = data.items;
-      return userlist.map(function(user:any){
-        return {id: user.id, name: user.name, usertypeId: user.userTypeId, depId: user.departmentId}
-      })
-    }))    
+    localStorage.getItem('Bearer')} })
+  }
+
+  GetProfiles(): Observable<any>
+  {
+    return this.http.get<any>(environment.apiUrl+'/user/profiles',{headers: {'Accept': 'application/json', 'Authorization' : 'Bearer ' +
+    localStorage.getItem('Bearer')} })
   }
 
   GetProfileData(): Promise<any>{
@@ -41,9 +42,50 @@ export class UserService {
      return promise;
   }
 
-  DeleteUser(){}
+  DeleteUser(id: number): Promise<any>{
+    var promise = new Promise((resolve, reject)=>{
+        this.http.delete<any>(environment.apiUrl+'/user/'+id,{headers: {'Accept': 'application/json', 'Authorization' : 'Bearer ' +
+        localStorage.getItem('Bearer')}}).subscribe(
+          (response)=>{
+            resolve(true);
+          },
+          (error)=>{
+            alert("Can't delete user")
+          }
+        )
+    })
+    return promise
+  }
 
-  CreateUser(){}
+  CreateUser(user: any): Promise<any>{
+    var promise = new Promise((resolve, reject)=>{
+      this.http.post<any>(environment.apiUrl+'/user',user,{headers: {'Accept': 'application/json', 'Authorization' : 'Bearer ' +
+      localStorage.getItem('Bearer')}}).subscribe(
+        (response)=>{
+          resolve(true);
+        },
+        (error)=>{
+          alert("Can't create user")
+        }
+      )
+    })
+    return promise
+  }
 
-  GetUserById(){}
+  UpdateUser(user: any): Promise<any>{
+    if(user.imageData==""){user.imageData=null}
+    if(user.imageData!=null){user.imageData=user.imageData.split(",").pop();}
+    var promise = new Promise((resolve, reject)=>{
+      this.http.put<any>(environment.apiUrl+'/user', user,{headers: {'Accept': 'application/json', 'Authorization' : 'Bearer ' +
+      localStorage.getItem('Bearer')}}).subscribe(
+        (response)=>{
+          resolve(response);
+        },
+        (error)=>{
+          alert("Can't update user")
+        }
+      )
+    })
+  return promise
+  }
 }

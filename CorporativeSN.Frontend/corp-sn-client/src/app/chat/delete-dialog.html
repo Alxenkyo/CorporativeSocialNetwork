@@ -1,0 +1,13 @@
+<div mat-dialog-content>
+  <p>Вы действительно хотите удалить чат?</p>
+</div>
+<div mat-dialog-actions>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary" [mat-dialog-close]="false">Отмена</button>
+        </div>
+        <div>
+            <button class="btn btn-danger" [mat-dialog-close]="true" cdkFocusInitial>Да</button>
+        </div>
+</div>
+</div>

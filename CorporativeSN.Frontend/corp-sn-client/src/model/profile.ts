@@ -1,6 +1,6 @@
 export class Profile{
     id: any;
     name: any;
-    usertypeId:any;
+    usertype:any;
     depId: any;
 }

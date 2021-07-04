@@ -1,0 +1,153 @@
+<div *ngIf="!chatIsOpen && !creatingChat">
+    <span class="createChat" (click)="OpenCreating()">
+        <img src="../../assets/images/plus.png" style="height: 25px; width: 25px;">
+        Создать новый чат
+    </span>
+<div class="overflow-scroll">
+    <ul class="list_of_chats">
+        <li *ngFor="let chat of chats" class="itemlistofchats" (click)="OpenChat(chat)" style="border-bottom: 1px solid rgb(204, 204, 204)">
+        <div class="row" style="margin-bottom: 10px; font-size: 20px;">
+            <div class="col">{{chat.name}}</div></div>
+        <div class="row" style="margin-left: 20px;">
+            <div class="row" *ngIf="chat.messages.length!=0 && chat.messages[chat.messages.length-1].creatorId === userId">
+            <div class="col">Вы: </div></div>
+        <div class="row" *ngIf="chat.messages.length!=0 && chat.messages[chat.messages.length-1].creatorId !== userId">
+            <div class="col">{{chat.messages[chat.messages.length-1].creatorName}}: </div></div>
+        <div class="row" *ngIf="chat.messages.length!=0">
+            <div class="col">{{chat.messages[chat.messages.length-1].text}}</div></div></div>
+        </li>
+    </ul>
+</div>
+</div>
+
+<div *ngIf="creatingChat">
+    <div class="row">
+    <span (click)="CloseCreating()" class="backbutton">
+        <img src="../../assets/images/back.png" style="height: 25px; width: 25px;">
+        Назад
+    </span>
+    </div>
+    <div class="row">
+    <span>
+        Введите название чата: 
+        <input type="text" placeholder="Чат" [(ngModel)]="newChat.name">
+    </span>
+</div>
+<ul>
+    <li *ngFor="let user of allUsers">
+        <input #inputEl type="checkbox" class="form-check-input" (change)="onCheckChange(user.id,inputEl.checked)"> {{user.firstName}} {{user.lastName}}</li>
+</ul>
+<div class="row">
+    <input type="button" class="btn btn-success" value="Создать чат" (click)="CreateChat()">
+</div>
+</div>
+
+
+
+<div class="overflow-scroll" style=" width: 700px" *ngIf="chatIsOpen && !creatingChat">
+    <div class="row">
+       <div class="col-lg-4 text-left">
+           <span (click)="CloseChat()" class="backbutton">
+               <img src="../../assets/images/back.png" style="height: 25px; width: 25px;">
+               Назад
+           </span>
+       </div>
+        <div class="col-lg-4 text-center">{{currentChat.name}}</div>
+        <div class="col-lg-4 text-right" *ngIf="currentChat.chatType!=='personal' && currentChat.creatorId===userId">
+            <span (click)="EditChat()" class="backbutton">
+                <img src="../../assets/images/edit.png" style="height: 25px; width: 25px;">
+                Изменить
+            </span>
+            <span (click)="DeleteChat()" class="backbutton">
+                <img src="../../assets/images/close.png" style="height: 25px; width: 25px;">
+                Удалить
+            </span>
+        </div>
+</div>
+<div class="row justify-content-center">
+    <span class="members" *ngIf="currentChat.chatType!=='personal'"> Участников: {{currentChat.members.length}}</span>
+</div>
+
+<div class="container" *ngIf="chatIsOpen && editingChat">
+    <div class="row">
+        <span (click)="CloseEditing()" class="backbutton">
+            <img src="../../assets/images/close.png" style="height: 25px; width: 25px;">
+            Отмена
+        </span>
+        </div>
+        <div class="row">
+        <span>
+            Введите название чата: 
+            <input type="text" placeholder="Чат" [(ngModel)]="editChat.name">
+        </span>
+    </div>
+    <div class="row">
+        <input type="button" class="btn btn-success" value="Сохранить" (click)="UpdateChat()">
+    </div>
+</div>
+
+<ul class="Messages" *ngIf="!editingChat"  style="margin-top: 20px;">
+<li *ngFor="let message of currentChat.messages">
+    <div *ngIf="message.creatorId === userId; then outcoming_msg; else incoming_msg"></div>
+    <ng-template #outcoming_msg>
+        <div class="row justify-content-end" style="margin-bottom: 20px;">
+            <div style="background-color: rgb(152, 136, 255);padding-top: 5px;
+            padding-bottom: 5px; padding-left:10px; padding-right: 20px; margin-right: 50px;">
+                <div class="row">
+                    <div class="col">{{message.text}}</div>
+                    <div class="text-right" style="font-size: 12px;">{{TransformDate(message.createdDate)}}</div>  
+                </div>  
+                <div class="row" *ngIf="message.messagesAttachments[0]!==null && message.messagesAttachments[0]!==undefined">
+                    <span style="margin-bottom: 5px;"class="attach" (click)="Download(message.messagesAttachments[0])">
+                        <img src="../../assets/images/document-icon.png" style="height: 15px; width: 15px;">
+                        {{message.messagesAttachments[0].name}}
+                    </span>
+                </div>    
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #incoming_msg>
+        <div class="row" style="margin-bottom: 20px;">
+        <div style="text-align: left; background-color: rgb(236, 236, 236); padding-left:10px; padding-right: 20px;">
+            <div class="row" style="margin-top: 2px;">
+            <div class="" style="color: rgb(152, 136, 255); padding-left:10px">{{message.creatorName}}</div>
+            <div class="col text-right" style="font-size: 12px; ">{{TransformDate(message.createdDate)}}</div>
+        </div>
+            <div class="row">
+                <div class="col">{{message.text}}</div></div> 
+            <div class="row" *ngIf="message.messagesAttachments[0]!==null && message.messagesAttachments[0]!==undefined">
+                <span class="attach" (click)="Download(message.messagesAttachments[0])">
+                    <img src="../../assets/images/document-icon.png" style="height: 15px; width: 15px;">
+                    {{message.messagesAttachments[0].name}}
+                </span>
+            </div>           
+        </div>
+        </div>
+    </ng-template>
+</li>
+</ul>
+    <div class="row justify-content-center" *ngIf="!editingChat">
+        <div>
+            <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+            <span class="spanbutton">
+                <img src="../../assets/images/attach.png" (click)="fileUpload.click()" style="height: 25px; width: 25px;">
+            </span>
+        </div>
+        <div style="margin-top: -5px;">
+            <input type = "text" style="width: 600px;" class="form-control" (keyup.enter)="SendMessage()"
+             placeholder="Напишите сообщение..." [(ngModel)]="message.text" name="text">
+        </div>
+        <div>
+            <span class="spanbutton">
+                <img src="../../assets/images/sent.png" (click)="SendMessage()" style="height: 25px; width: 25px;">
+            </span>
+        </div>    
+    </div>
+    <div class="row" *ngIf="showAttach">
+       <div class="col">
+        <span><img src="../../assets/images/document-icon.png" style="height: 15px; width: 15px;">
+            {{attach.name}}
+            <img src="../../assets/images/close.png" class="imgclose" (click)="deleteAttach()" style="height: 15px; width: 15px;"></span>
+        </div>
+        </div>
+</div>
