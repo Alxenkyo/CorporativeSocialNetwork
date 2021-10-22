@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\CorporativeSN\\CorporativeSN.Logic\\CorporativeSN.Logic.csproj": {}
+    "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Logic\\CorporativeSN.Logic.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj": {
+    "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj",
+        "projectUniqueName": "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj",
         "projectName": "CorporativeSN.Data",
-        "projectPath": "D:\\Projects\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj",
+        "projectPath": "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\CorporativeSN\\CorporativeSN.Data\\obj\\",
+        "outputPath": "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -84,14 +84,14 @@
         }
       }
     },
-    "D:\\Projects\\CorporativeSN\\CorporativeSN.Logic\\CorporativeSN.Logic.csproj": {
+    "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Logic\\CorporativeSN.Logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\CorporativeSN\\CorporativeSN.Logic\\CorporativeSN.Logic.csproj",
+        "projectUniqueName": "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Logic\\CorporativeSN.Logic.csproj",
         "projectName": "CorporativeSN.Logic",
-        "projectPath": "D:\\Projects\\CorporativeSN\\CorporativeSN.Logic\\CorporativeSN.Logic.csproj",
+        "projectPath": "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Logic\\CorporativeSN.Logic.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\CorporativeSN\\CorporativeSN.Logic\\obj\\",
+        "outputPath": "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Logic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -108,8 +108,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Projects\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj": {
-                "projectPath": "D:\\Projects\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj"
+              "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj": {
+                "projectPath": "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN.Data\\CorporativeSN.Data.csproj"
               }
             }
           }

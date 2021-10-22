@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TOj3ub22uIsQBmjvvU6FJbqMzb0DxwBKlaiEn0YkjuwEQ4b67NBtTnJqXSWQhoqANJ9F3+M80brvHHMFc1Z1dw==",
+  "dgSpecHash": "rwtHhfow78/KqHM4MbLHCmnaO9O1vlUMF+pzbVRK2/H1Gi//i10zML6CgJ1CgSp6ru5n8tT2uLFSR6GLOau5CQ==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\CorporativeSN\\CorporativeSN\\CorporativeSN.Api.csproj",
+  "projectFilePath": "D:\\Projects\\repos\\CorporativeSN\\CorporativeSN\\CorporativeSN.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
