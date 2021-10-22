@@ -1,0 +1,12 @@
+ul{
+    list-style-type: none;
+}
+li{
+    //border-bottom: 2px solid rgb(209, 209, 209);
+}
+label{
+    color: rgba(211, 25, 248, 0.7);
+    &:hover{
+        text-decoration: underline;
+    }
+}

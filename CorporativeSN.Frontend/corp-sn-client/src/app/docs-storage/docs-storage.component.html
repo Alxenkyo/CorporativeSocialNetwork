@@ -1,0 +1,22 @@
+<mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Общие">
+        <ul>
+            <li type = "button" *ngFor="let doc of docs" (click)="Download(doc.id)">
+                <span *ngIf="doc.departmentId===null">
+                    <img src="../../assets/images/document-icon.png" style="height: 15px; width: 15px;">
+                    {{doc.fileName}}
+                </span>
+            </li>
+        </ul>
+    </mat-tab>
+    <mat-tab label="Мой отдел">
+        <ul>
+            <li type = "button" *ngFor="let doc of docs" (click)="Download(doc.id)">
+                <span *ngIf="doc.departmentId!==null">
+                    <img src="../../assets/images/document-icon.png" style="height: 15px; width: 15px;">
+                    {{doc.fileName}}
+                </span>
+            </li>
+        </ul>
+    </mat-tab>
+</mat-tab-group>

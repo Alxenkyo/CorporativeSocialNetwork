@@ -1,0 +1,124 @@
+
+        <span class="createUser" (click)="OpenCreating()" *ngIf="!creatingUser && !editingUser">
+            <img src="../../assets/images/plus.png" style="height: 25px; width: 25px;">
+            Создать нового пользователя
+        </span>
+
+<div class="container" *ngIf="creatingUser">
+    <div class="row" style = "margin-bottom: 10px;">
+        <span class="createUser" (click)="CloseCreating()">
+            <img src="../../assets/images/close.png" style="height: 25px; width: 25px;">
+            Закрыть
+        </span>
+    </div>
+    <div class="row" style = "margin-bottom: 10px;">
+    <span>
+        Имя:
+        <input type="text" class="form-text" [(ngModel)]="createUser.firstName">
+    </span>
+</div>
+<div class="row" style = "margin-bottom: 10px;">
+    <span>
+        Фамилия:
+        <input type="text" class="form-text" [(ngModel)]="createUser.lastName">
+    </span>
+</div>
+<div class="row" style = "margin-bottom: 10px;">
+    <span>
+        Email:
+        <input type="text" class="form-text" [(ngModel)]="createUser.email">
+    </span>
+</div>
+<div class="row" style = "margin-bottom: 10px;">
+    <span>
+        Пароль:
+        <input type="text" class="form-text" [(ngModel)]="createUser.password">
+    </span>
+</div>
+<div class="row" style = "margin-bottom: 10px;">
+    <span>
+        Выберите отдел:
+        <select [(ngModel)]="createUser.departmentId">
+            <option *ngFor="let dep of departments" value="{{dep.id}}">{{dep.name}}</option>
+        </select>
+    </span>
+</div>
+<div class="row" style = "margin-bottom: 10px;">
+    <button class="btn btn-success" (click)="CreateUser()">Сохранить</button>
+</div>
+</div>
+
+<div class="container" *ngIf="editingUser">
+    <div class="row" style = "margin-bottom: 10px;">
+        <span class="createUser" (click)="CloseEditing()">
+            <img src="../../assets/images/close.png" style="height: 25px; width: 25px;">
+            Закрыть
+        </span>
+    </div>
+    <div class="row" style = "margin-bottom: 10px;">
+    <span>
+        Имя:
+        <input type="text" class="form-text" [(ngModel)]="editUser.firstName" required>
+    </span>
+</div>
+<div class="row" style = "margin-bottom: 10px;">
+    <span>
+        Фамилия:
+        <input type="text" class="form-text" [(ngModel)]="editUser.lastName" required>
+    </span>
+</div>
+<div class="row" style = "margin-bottom: 10px;">
+    <span>
+        Email:
+        <input type="text" class="form-text" [(ngModel)]="editUser.email" required>
+    </span>
+</div>
+<div class="row" style = "margin-bottom: 10px;">
+    <span>
+        Выберите отдел:
+        <select [(ngModel)]="editUser.departmentId">
+            <option *ngFor="let dep of departments" [value]="dep.id">{{dep.name}}</option>
+        </select>
+    </span>
+</div>
+<div class="row" style = "margin-bottom: 10px;">
+    <button class="btn btn-success" (click)="EditUser()">Сохранить</button>
+</div>
+</div>
+
+<table class="table table-striped" *ngIf="!creatingUser && !editingUser">
+    <thead>
+        <tr>
+        <td>Id</td>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Отдел</td>
+        <td>Роль</td>
+    </tr>
+    </thead>
+    <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.departmentName}}</td>
+        <td>{{user.typeName}}</td>
+        <td>
+            <span class="createUser" (click)="OpenEditing(user)">
+                <img src="../../assets/images/edit.png" style="height: 25px; width: 25px;">
+            </span>
+        </td>
+        <td>
+            <span class="createUser" *ngIf="user.typeName!=='admin'" (click)="DeleteUser(user.id)">
+                <img src="../../assets/images/delete.png" style="height: 25px; width: 25px;">
+            </span>
+        </td>
+    </tr>
+</table>
+
+<!--<ag-grid-angular
+style="width: 500px; height: 500px;"
+class="ag-theme-alpine"
+[rowData]="users"
+[columnDefs]="colDefs">
+
+</ag-grid-angular>-->

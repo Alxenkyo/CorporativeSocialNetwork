@@ -1,0 +1,24 @@
+li{
+    background-color: rgba(211, 25, 248, 0.001);
+    color: black;
+    text-align: left;
+    font-size:15px;
+    padding-left: 10px;
+    padding-top: 5px;
+    &:hover{
+        background-color: rgba(211, 25, 248, 0.1);
+    }
+    &:active{
+        background-color: rgba(211, 25, 248, 0.3);
+    }
+}
+.titleButton{
+    &:hover{
+        cursor: pointer;
+    }
+}
+.navprof{
+    &:hover{
+        cursor: pointer;
+    }
+}
