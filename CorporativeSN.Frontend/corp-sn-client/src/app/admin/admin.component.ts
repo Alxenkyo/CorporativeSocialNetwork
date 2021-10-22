@@ -20,15 +20,18 @@ export class AdminComponent implements OnInit {
   editingUser: boolean = false;
   users: any[] = [];
   departments: any[] = [];
+
   ngOnInit(): void {
     this.GetUsers();
     this.GetDepartments();
   }
+  
   GetUsers()
   {this._userService.GetUsers().subscribe(data=>{
     console.log(data)
     this.users=data.items});
   }
+  
   GetDepartments(){
     var promise = this._depService.GetDepartments()
       promise.then(data=>{this.departments=data.items})
