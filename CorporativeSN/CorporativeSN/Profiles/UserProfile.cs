@@ -12,8 +12,11 @@ namespace CorporativeSN.Api.Profiles
     {
         public UserProfile()
         {
-            CreateMap<Users, UserDTO>();
-            CreateMap<UserDTO, Users>();
+            CreateMap<Users, UserDTO>().ForMember(x=>x.TypeName, opt=>opt.MapFrom(c=>c.UserType.Name))
+                .ForMember(x=>x.DepartmentName, opt=>opt.MapFrom(c=>c.Department.Name))
+                .ForMember(x => x.ImageData, opt => opt.MapFrom(c => "" + Convert.ToBase64String(c.ImageData)));
+            CreateMap<UserDTO, Users>()
+                .ForMember(x => x.ImageData, opt => opt.ConvertUsing(new Base64ByteConverter(), c => c.ImageData)) ;
         }
     }
 }

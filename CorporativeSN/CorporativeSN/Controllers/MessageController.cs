@@ -9,20 +9,27 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using CorporativeSN.Api.Hubs;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+using System.Security.Cryptography;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CorporativeSN.Api.Controllers
 {
+    [EnableCors("MyAllowOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class MessageController : ControllerBase
     {
         private readonly IMessageManager _messageManager;
-
-        public MessageController(IMessageManager messageManager, IHubContext<ChatHub> hubContext)
+        private readonly IChatManager _chatManager;
+        private readonly IHubContext<ChatHub> _hub;
+        public MessageController(IMessageManager messageManager, IHubContext<ChatHub> hubContext, IChatManager chatManager)
         {
             _messageManager = messageManager;
+            _hub = hubContext;
+            _chatManager = chatManager;
         }
 
         [HttpGet]
@@ -45,17 +52,25 @@ namespace CorporativeSN.Api.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPost()]
+        [DisableRequestSizeLimit]
         public async Task<IActionResult> SendMessageAsync(
-           MessageDTO message,
+           [FromBody]MessageDTO message,
            CancellationToken cancellationToken = default)
         {
+            
+            message.CreatedDate = DateTime.Now;
+            message.CreatorId = int.Parse(User.Claims.Where(c => c.Type == "Id").Select(c => c.Value).SingleOrDefault());
+            var chat = await _chatManager.GetChatAsync(message.ChatId);
             var result = await _messageManager.CreateMessageAsync(message, cancellationToken);
+            message.CreatorName =  _messageManager.GetMessageAsync(result.Id).Result.CreatorName;
+            await _hub.Clients.All.SendAsync("Notify", message,cancellationToken);
             return Ok(result);
         }
 
         [HttpDelete("{messageId}")]
-        public async Task<IActionResult> DeleteUserAsync(
+        public async Task<IActionResult> DeleteMessageAsync(
             int messageId,
             CancellationToken cancellationToken = default)
         {

@@ -12,16 +12,21 @@ namespace CorporativeSN.Api.Hubs
         {
             return Clients.All.SendAsync("ReceiveMessage", user, message);
         }
+
         public async Task JoinRoom(string roomName)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, roomName);
-            await Clients.Group(roomName).SendAsync("Send", Context.User.Identity.Name + "has joined the chat.");
+            await Clients.Group(roomName).SendAsync("Joined", Context.User.Identity.Name + "has joined the chat.");
         }
 
         public async Task LeaveRoom(string roomName)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomName);
-            await Clients.Group(roomName).SendAsync("Send", Context.User.Identity.Name + "has left the chat.");
+            await Clients.Group(roomName).SendAsync("Leaved", Context.User.Identity.Name + "has left the chat.");
+        }
+        public string GetConnectionId()
+        {
+            return Context.ConnectionId;
         }
     }
 }

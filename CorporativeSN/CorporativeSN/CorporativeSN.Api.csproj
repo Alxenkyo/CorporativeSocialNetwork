@@ -21,5 +21,10 @@
     <ProjectReference Include="..\CorporativeSN.Logic\CorporativeSN.Logic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Docs\TestDocument.docx" />
+    <None Include="wwwroot\Docs\TestDocumentJavaDev.docx" />
+  </ItemGroup>
+
 
 </Project>

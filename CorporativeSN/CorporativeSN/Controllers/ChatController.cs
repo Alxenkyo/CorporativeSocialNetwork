@@ -20,10 +20,12 @@ namespace CorporativeSN.Api.Controllers
     public class ChatController : ControllerBase
     {
         private readonly IChatManager _chatManager;
+        private readonly IHubContext<ChatHub> _hub;
 
         public ChatController(IChatManager chatManager, IHubContext<ChatHub> hubContext)
         {
             _chatManager = chatManager;
+            _hub = hubContext;
         }
 
         [Authorize]
@@ -51,15 +53,28 @@ namespace CorporativeSN.Api.Controllers
            CancellationToken cancellationToken = default)
         {
             var result = await _chatManager.CreateChatAsync(chat, cancellationToken);
+            await _hub.Clients.All.SendAsync("NotifyNewChat", result, cancellationToken);
             return Ok(result);
         }
 
+        [HttpPost("/personal")]
+        public async Task<IActionResult> CreatePersonalChatAsync(
+           ChatDTO chat,
+           CancellationToken cancellationToken = default)
+        {
+            var result = await _chatManager.CreatePersonalChatAsync(chat, cancellationToken);
+            await _hub.Clients.All.SendAsync("NotifyNewChat", result, cancellationToken);
+            return Ok(result);
+        }
+
+        [Authorize]
         [HttpDelete("{chatId}")]
         public async Task<IActionResult> DeleteChatAsync(
             int chatId,
             CancellationToken cancellationToken = default)
         {
-            await _chatManager.DeleteChatAsync(chatId, cancellationToken);
+            int userId = int.Parse(User.Claims.Where(c => c.Type == "Id").Select(c => c.Value).SingleOrDefault());
+            await _chatManager.DeleteChatAsync(chatId, userId, cancellationToken);
             return Ok();
         }
 

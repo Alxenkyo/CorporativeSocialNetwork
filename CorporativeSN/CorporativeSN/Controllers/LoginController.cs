@@ -14,6 +14,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.SignalR;
+using CorporativeSN.Api.Hubs;
 
 namespace CorporativeSN.Api.Controllers
 {
@@ -24,9 +26,11 @@ namespace CorporativeSN.Api.Controllers
     {
         private const string IdClaim = "Id";
         private readonly IUserManager _userManager;
-        public LoginController(IUserManager userManager)
+        private readonly IHubContext<ChatHub> _hub;
+        public LoginController(IUserManager userManager, IHubContext<ChatHub> hub)
         {
             _userManager = userManager;
+            _hub = hub;
         }
 
         [HttpPost("token")]
@@ -37,9 +41,7 @@ namespace CorporativeSN.Api.Controllers
             {
                 return BadRequest(new { errorText = "Invalid login or password." });
             }
-
             var now = DateTime.UtcNow;
-            // создаем JWT-токен
             var jwt = new JwtSecurityToken(
                     issuer: AuthOptions.ISSUER,
                     audience: AuthOptions.AUDIENCE,
@@ -48,7 +50,6 @@ namespace CorporativeSN.Api.Controllers
                     expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
             var response = new
             {
                 access_token = encodedJwt
@@ -61,8 +62,14 @@ namespace CorporativeSN.Api.Controllers
 
         [Authorize]
         [HttpGet("check")]
-        public async Task<IActionResult> CheckAuth()
+        public async Task<IActionResult> CheckAuth(string connectionId, CancellationToken cancellationToken = default)
         {
+            int userId = int.Parse(User.Claims.Where(c => c.Type == "Id").Select(c => c.Value).SingleOrDefault());
+            var user = await _userManager.GetUserAsync(userId,  cancellationToken);
+            foreach(var item in user.ChatMembers)
+            {
+                await _hub.Groups.AddToGroupAsync(connectionId, item.ChatName, cancellationToken);
+            }
             return Ok();
         }
 
@@ -74,7 +81,7 @@ namespace CorporativeSN.Api.Controllers
                 UserTypeDTO role = await _userManager.GetUserRole(person, cancellationToken);
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, person.Login),
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, person.Email),
                     new Claim(ClaimsIdentity.DefaultRoleClaimType, role.Name),
                     new Claim(IdClaim, person.Id.ToString())
                 };
@@ -83,8 +90,6 @@ namespace CorporativeSN.Api.Controllers
                     ClaimsIdentity.DefaultRoleClaimType);
                 return claimsIdentity;
             }
-
-            // если пользователя не найдено
             return null;
         }
     }

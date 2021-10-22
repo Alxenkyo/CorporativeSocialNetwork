@@ -14,6 +14,8 @@ namespace CorporativeSN.Logic.Interfaces
         Task<ChatDTO> GetChatAsync(int chatId, CancellationToken cancellationToken = default);
         Task<ChatDTO> CreateChatAsync(ChatDTO chat, CancellationToken cancellationToken = default);
         Task<ChatDTO> UpdateChatAsync(ChatDTO chat, CancellationToken cancellationToken = default);
-        Task DeleteChatAsync(int chatId, CancellationToken cancellationToken = default);
+        Task DeleteChatAsync(int chatId, int userId, CancellationToken cancellationToken = default);
+
+        Task<ChatDTO> CreatePersonalChatAsync(ChatDTO chat, CancellationToken cancellationToken = default);
     }
 }

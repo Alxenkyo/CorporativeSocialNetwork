@@ -13,11 +13,11 @@ namespace CorporativeSN.Data
         DbSet<Chats> Chats { get; set; }
         DbSet<ChatMember> ChatMembers { get; set; }
         DbSet<UsersMessages> UsersMessages { get; set; }
-        //DbSet<MessageStatus> MessageStatuses { get; set; }
         DbSet<Users> Users { get; set; }
         DbSet<UserTypes> UserTypes { get; set; }
         DbSet<Departments> Departments { get; set; }
-        DbSet<UserEvents> UserEvents { get; set; }
+        DbSet<Documents> Documents { get; set; }
+        DbSet<MessagesAttachments> MessagesAttachments { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

@@ -23,19 +23,26 @@ namespace CorporativeSN.Logic.Managers
             _corpSNContext = corpSNContext;
             _mapper = mapper;
         }
-        //add async to all metods
         public async Task<ChatDTO> CreateChatAsync(ChatDTO chat, CancellationToken cancellationToken = default)
         {
             var add = _mapper.Map<Chats>(chat);
             _corpSNContext.Chats.Add(add);
             await _corpSNContext.SaveChangesAsync(cancellationToken);
+            if (chat.MembersId != null)
+            {
+                foreach (int id in chat.MembersId)
+                {
+                    _corpSNContext.ChatMembers.Add(new ChatMember(id, _mapper.Map<ChatDTO>(add).Id));
+                }
+                await _corpSNContext.SaveChangesAsync(cancellationToken);
+            }
             return _mapper.Map<ChatDTO>(add);
         }
 
-        public async Task DeleteChatAsync(int chatId, CancellationToken cancellationToken = default)
+        public async Task DeleteChatAsync(int chatId, int userId, CancellationToken cancellationToken = default)
         {
             var chat = await _corpSNContext.Chats.FirstOrDefaultAsync(x => x.Id == chatId, cancellationToken);
-            if (chat != null)
+            if (chat != null && chat.CreatorId==userId)
             {
                 _corpSNContext.Chats.Remove(chat);
                 await _corpSNContext.SaveChangesAsync(cancellationToken);
@@ -44,14 +51,19 @@ namespace CorporativeSN.Logic.Managers
 
         public async Task<ChatDTO> GetChatAsync(int chatId, CancellationToken cancellationToken = default)
         {
-            var chat = await _corpSNContext.Chats.Include(x=>x.Messages).AsNoTracking().FirstOrDefaultAsync(x => x.Id == chatId, cancellationToken);
+            var chat = await _corpSNContext.Chats
+                .Include(x=>x.Messages)
+                .ThenInclude(x=>x.MessagesAttachments)
+                .AsNoTracking().FirstOrDefaultAsync(x => x.Id == chatId, cancellationToken);
             return _mapper.Map<ChatDTO>(chat);
         }
 
         public async Task<PagedResult<ChatDTO>> GetChatsAsync(int userId, CancellationToken cancellationToken = default)
         {
-            var query =  _corpSNContext.Chats
-                .Include(x => x.Members)
+            var query = _corpSNContext.Chats
+                .Include(x => x.Members).ThenInclude(x => x.User)
+                .Include(x => x.Messages).ThenInclude(x => x.User)
+                .Include(x => x.Messages).ThenInclude(x => x.MessagesAttachments)
                 .AsEnumerable()
                 .Where(x => x.Members.Exists(x => x.UserId == userId))
                 //.Include(x => x.Messages)
@@ -86,6 +98,23 @@ namespace CorporativeSN.Logic.Managers
             }
             await _corpSNContext.SaveChangesAsync(cancellationToken);
             return chat;
+        }
+
+        public async Task<ChatDTO> CreatePersonalChatAsync(ChatDTO chat, CancellationToken cancellationToken = default)
+        {
+            chat.ChatType = "personal";
+            var add = _mapper.Map<Chats>(chat);
+            _corpSNContext.Chats.Add(add);
+            await _corpSNContext.SaveChangesAsync(cancellationToken);
+            if (chat.MembersId != null)
+            {
+                foreach (int id in chat.MembersId)
+                {
+                    _corpSNContext.ChatMembers.Add(new ChatMember(id, _mapper.Map<ChatDTO>(add).Id));
+                }
+                await _corpSNContext.SaveChangesAsync(cancellationToken);
+            }
+            return _mapper.Map<ChatDTO>(add);
         }
     }
 }

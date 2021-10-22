@@ -30,7 +30,7 @@ namespace CorporativeSN
                 {
                     var context = (CorpSNContext)services.GetRequiredService<ICorpSNContext>();
                     context.Database.EnsureCreated();
-                    CorpSNContextInit.Init(context);
+                   // CorpSNContextInit.Init(context);
                 }
                 catch (Exception ex)
                 {

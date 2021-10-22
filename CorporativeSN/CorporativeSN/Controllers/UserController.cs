@@ -27,13 +27,9 @@ namespace CorporativeSN.Api.Controllers
 
         [Authorize(Roles = "admin")]
         [HttpGet]
-        public async Task<IActionResult> GetUsersAsync(
-            [FromQuery] string search,
-            [FromQuery] int? fromIndex = default,
-            [FromQuery] int? toIndex = default,
-            CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetUsersAsync(CancellationToken cancellationToken = default)
         {
-            var result = await _userManager.GetUsersAsync(search, fromIndex, toIndex, cancellationToken);
+            var result = await _userManager.GetUsersAsync(cancellationToken);
             return Ok(result);
         }
 
@@ -56,6 +52,7 @@ namespace CorporativeSN.Api.Controllers
             return Ok(result);
         }
 
+        //[Authorize(Roles = "admin")]
         [HttpPost()]
         public async Task<IActionResult> CreateUserAsync(
            UserDTO user,
@@ -65,6 +62,7 @@ namespace CorporativeSN.Api.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteUserAsync(
             int userId,
@@ -74,12 +72,22 @@ namespace CorporativeSN.Api.Controllers
             return Ok();
         }
 
+        [Authorize()]
         [HttpPut()]
+        [DisableRequestSizeLimit]
         public async Task<IActionResult> UpdateUserAsync(
-            UserDTO user,
+            [FromBody]UserDTO user,
             CancellationToken cancellationToken = default)
         {
             var result = await _userManager.UpdateUserAsync(user, cancellationToken);
+            return Ok(result);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("profiles")]
+        public async Task<IActionResult> GetUsersProfiles()
+        {
+            var result = await _userManager.GetUsersList();
             return Ok(result);
         }
     }

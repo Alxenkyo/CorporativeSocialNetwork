@@ -1,4 +1,13 @@
 D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\CorporativeSN.Api.exe
+D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Docs\JavaDev документ 1.docx
+D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Docs\JavaDev документ 2.docx
+D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Docs\TestDocument.docx
+D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Docs\TestDocumentJavaDev.docx
+D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Docs\Общий документ 1.docx
+D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Docs\Общий документ 2.docx
+D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Docs\Общий документ 3.docx
+D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Docs\Общий документ 4.docx
+D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Docs\ТЗ.docx
 D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\web.config
 D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.Development.json
 D:\Projects\CorporativeSN\CorporativeSN\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.json

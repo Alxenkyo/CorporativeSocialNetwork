@@ -6,6 +6,7 @@ using CorporativeSN.Logic.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -26,6 +27,10 @@ namespace CorporativeSN.Logic.Managers
         public async Task<MessageDTO> CreateMessageAsync(MessageDTO message, CancellationToken cancellationToken = default)
         {
             var add = _mapper.Map<UsersMessages>(message);
+            //if (message.MessagesAttachments != null)
+            //{
+            //    add.MessagesAttachments[0].BinaryData = Convert.FromBase64String(message.MessagesAttachments.ToArray().First().BinaryData);
+            //}
             _corpSNContext.UsersMessages.Add(add);
             await _corpSNContext.SaveChangesAsync(cancellationToken);
             return _mapper.Map<MessageDTO>(add);
@@ -43,13 +48,13 @@ namespace CorporativeSN.Logic.Managers
 
         public async Task<MessageDTO> GetMessageAsync(int messageId, CancellationToken cancellationToken = default)
         {
-            var message = await _corpSNContext.Chats.AsNoTracking().FirstOrDefaultAsync(x => x.Id == messageId, cancellationToken);
+            var message = await _corpSNContext.UsersMessages.Include(x=>x.User).AsNoTracking().FirstOrDefaultAsync(x => x.Id == messageId, cancellationToken);
             return _mapper.Map<MessageDTO>(message);
         }
 
         public async Task<PagedResult<MessageDTO>> GetMessagesAsync(string search, int? fromIndex = null, int? toIndex = null, CancellationToken cancellationToken = default)
         {
-            var query = _corpSNContext.UsersMessages.AsNoTracking();
+            var query = _corpSNContext.UsersMessages.Include(x=>x.User).AsNoTracking();
             if (!string.IsNullOrWhiteSpace(search))
             {
                 query = query.Where(x =>
